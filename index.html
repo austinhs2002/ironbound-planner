@@ -1,0 +1,1640 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Explore Ironbound character builds, attributes, ancestry, age and the action skill tree. An offline design preview."><title>Ironbound · Character Planner</title><style>
+:root{color-scheme:dark;--bg:#101617;--panel:#192122;--panel-2:#202a2b;--text:#eeece4;--muted:#b4b9b4;--gold:#d2b477;--accent:#89b6a7;--line:#394444;--red:#df9990;--blue:#97b5dc;--green:#9fc49c;--shadow:0 18px 40px #0002;font-family:Segoe UI,system-ui,sans-serif;font-size:15px;line-height:1.5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 95% 0,#34424455,transparent 45%),var(--bg);color:var(--text)}button,input,select{font:inherit}button,select,input[type=range],summary{cursor:pointer}button{border:1px solid var(--line);background:#222d2e;color:var(--text);padding:9px 15px;border-radius:5px;transition:background .15s,border-color .15s}button:hover{background:#2e3b3c;border-color:var(--gold)}button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}h1,h2,h3,p{margin:0}h1{font-family:Georgia,serif;font-weight:400;font-size:34px;line-height:1.25;letter-spacing:.02em}h2{font-size:16px;font-weight:600}h3{font-size:15px}p+p{margin-top:12px}[hidden]{display:none!important}.app{max-width:1490px;margin:auto;padding:26px 36px 0}.masthead{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:27px}.brand{display:flex;align-items:center;gap:16px}.brand-mark{font-family:Georgia,serif;display:grid;place-items:center;width:44px;height:51px;border:1px solid var(--gold);color:var(--gold);font-size:34px;clip-path:polygon(0 0,100% 0,100% 80%,50% 100%,0 80%);background:#252d2b}.wordmark{font-family:Georgia,serif;font-size:26px;letter-spacing:.27em;color:#f2e5c9}.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.15em;text-transform:uppercase}.brand .eyebrow{margin-top:2px;color:var(--muted);font-size:10px}.header-actions{display:flex;gap:9px;align-items:center}.offline{font-size:12px;color:var(--accent);margin-right:10px}.tabs{display:flex;border-bottom:1px solid var(--line);gap:25px;flex-wrap:wrap}.tabs button{border:0;border-radius:0;background:none;padding:13px 0 14px;color:var(--muted);position:relative}.tabs button.active{color:var(--gold)}.tabs button.active:after{content:"";height:2px;background:var(--gold);position:absolute;bottom:-1px;left:0;right:0}.notice{display:flex;gap:11px;align-items:baseline;margin:22px 0 29px;font-size:12px;color:var(--muted)}.notice strong{font-weight:600;color:var(--text)}.status-dot{flex:none;width:6px;height:6px;border-radius:50%;background:var(--gold)}.tag{display:inline-flex;align-items:center;gap:5px;border:1px solid #52605b;color:#cdd3ca;background:#283531;border-radius:4px;font-size:10px;line-height:1.5;padding:3px 7px;white-space:nowrap;font-weight:500;letter-spacing:.02em}.tag.demo{color:#dfc9a1;background:#342f24;border-color:#65563d}.tag.settled{color:#b7dccb;background:#23372e;border-color:#466a56}.build-topline{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 23px}.build-topline h1{margin:5px 0}.build-topline p{font-size:13px}.muted,.hint{color:var(--muted)}.hint{font-size:11.5px;line-height:1.55}.accent-button{background:#c5ac78;color:#171d1b;border-color:#c5ac78;font-weight:600}.accent-button:hover{background:#e0c894;color:#101617}.character-grid{display:grid;grid-template-columns:minmax(230px,.9fr) minmax(360px,1.5fr) minmax(260px,1fr);align-items:start;gap:18px}.panel{background:linear-gradient(145deg,#222d2d70,transparent 80%),var(--panel);border:1px solid var(--line);border-radius:7px;padding:23px;box-shadow:var(--shadow);min-width:0}.section-heading{display:flex;gap:10px;align-items:center;margin-bottom:22px;flex-wrap:wrap}.section-heading .tag{margin-left:auto}.section-number{font:12px Georgia,serif;color:var(--gold)}.field{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted);margin:15px 0}select,input[type=number],input[type=text]{background:#101819;color:var(--text);border:1px solid #465453;border-radius:4px;padding:10px;width:100%;min-width:0}select{font-size:14px}.flavor{font-family:Georgia,serif;font-size:14px;color:#c6c6b9;margin:15px 0 18px;line-height:1.65}.check-line{display:flex;flex-wrap:wrap;gap:7px;align-items:center;font-size:12px}.check-line input{accent-color:var(--gold);width:16px;height:16px}.check-line .tag{font-size:9px}.recognition{margin-top:15px;color:var(--accent);font-size:11px;line-height:1.6}.divider{height:1px;background:var(--line);margin:22px 0}.slider-label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;margin-top:15px}output{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:600}input[type=range]{display:block;width:100%;accent-color:var(--gold);height:21px;margin:10px 0 3px}.range-labels{display:flex;justify-content:space-between;color:#9aa7a1;font-size:10px;margin-bottom:7px}.origins>.hint{margin:7px 0 15px}.budget-line{display:flex;justify-content:space-between;align-items:end;gap:12px}.budget-line>div:first-child{display:flex;align-items:center;gap:15px}.budget-line .muted{max-width:75px;font-size:12px;line-height:1.4}.budget-line strong{font:36px Georgia,serif;color:var(--gold);font-variant-numeric:tabular-nums}.budget-total{display:flex;flex-direction:column;text-align:right;font-size:11px;color:var(--muted)}.budget-track{height:4px;background:#0e1616;margin:13px 0 21px;border-radius:3px;overflow:hidden}#budget-fill{height:100%;background:var(--gold);transition:width .12s}.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 10px}.presets button{padding:7px 6px;font-size:12px}.presets .selected{border-color:var(--gold);color:var(--gold);background:#39372c}.attr{padding:18px 0 16px;border-bottom:1px solid #354140}.attr-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.attr-name{display:flex;align-items:center;gap:10px}.attr-code{color:var(--gold);font-size:10px;letter-spacing:.05em;width:30px}.attr-name label{font-family:Georgia,serif;font-size:19px}.attr-values{display:flex;align-items:center;gap:7px;white-space:nowrap;color:var(--muted);font-size:12px}.attr-values input{width:61px;padding:5px 4px;text-align:center;font-size:16px;font-weight:600}.attr-values .cap{color:var(--gold);min-width:25px}.attr .hint{font-size:11px;margin-top:5px}.attr input[type=range]{margin:9px 0 0;height:18px}.allocation-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}.quiet{background:none;font-size:11px;padding:5px 0;border:0;color:var(--muted);text-decoration:underline;text-underline-offset:3px}.vital{margin-bottom:18px}.vital-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}.vital-head>span{font-size:12px;color:var(--muted)}.vital-head strong{font-family:Georgia,serif;font-size:29px;font-weight:400;font-variant-numeric:tabular-nums}.vital-value-label{display:flex;align-items:center;gap:7px}.vital-line{height:3px;background:#0e1616;margin:7px 0}.vital-line div{height:100%}.vital.health{--vital:var(--red)}.vital.stamina{--vital:var(--green)}.vital.mana{--vital:var(--blue)}.vital strong{color:var(--vital)}.vital-line div{background:var(--vital)}.vital .hint{display:flex;justify-content:space-between;gap:8px;font-size:10px}.metric-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid #354140;font-size:12px}.metric-row span{color:var(--muted)}.metric-row strong{font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}.metric-row .tag{font-size:8px;margin-left:5px;color:#dfc9a1}.target-settings{margin-top:20px;font-size:12px}.target-settings summary{color:var(--gold)}.sheet-note{margin-top:18px}.change-message{min-height:42px;padding:13px 0;color:var(--gold);font-size:12px}.formula-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}.formula-item{padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:6px}.formula-item h3{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.formula-item p{font-size:12px;color:var(--muted);margin-top:11px}.formula-item code{display:block;margin:12px 0;font-family:Consolas,monospace;line-height:1.7;color:#d7c299;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}.legend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:18px}.legend-grid p,.rules-footnote p{font-size:13px;color:var(--muted);margin-top:10px}.rules-footnote{margin:18px 0}.comparison-empty{padding:55px 30px;text-align:center}.comparison-empty h2{font:25px Georgia,serif;margin-bottom:12px}.compare-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:15px;padding:20px 0;border-bottom:1px solid var(--line)}.compare-head h3{font:22px Georgia,serif;margin:6px 0}.compare-head p{color:var(--muted);font-size:12px}.compare-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}.compare-table th,.compare-table td{text-align:left;padding:13px 8px;border-bottom:1px solid #354140;overflow-wrap:anywhere}.compare-table th{width:35%;font-weight:400;color:var(--muted)}.compare-table td{font-variant-numeric:tabular-nums}.delta{display:inline-block;font-size:11px;color:var(--gold);margin-left:10px}.comparison-caption{font-size:12px;color:var(--muted);margin:16px 0}footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding:24px 0;color:#9ea9a4;font-size:10px;letter-spacing:.12em;margin-top:28px}#toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);max-width:calc(100vw - 30px);background:#d2b477;color:#101617;padding:12px 20px;border-radius:5px;box-shadow:0 8px 30px #0007;font-size:13px;z-index:50}
+@media(min-width:1450px){.panel{padding:26px}.character-grid{gap:22px}}
+@media(max-width:1120px){.app{padding:22px 24px 0}.character-grid{grid-template-columns:minmax(235px,.85fr) minmax(330px,1.3fr)}.derived-panel{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:0 35px}.derived-panel .section-heading{grid-column:1/-1}.derived-panel>.divider{display:none}.derived-panel .sheet-note{grid-column:1/-1}.derived-panel .target-settings{margin-top:0}.section-heading .tag{font-size:9px}}
+@media(max-width:740px){.app{padding:19px 17px 0}.masthead{align-items:flex-start;gap:15px;flex-wrap:wrap}.header-actions{width:100%;justify-content:flex-end}.offline{margin-right:auto}.tabs{gap:20px}.tabs button{font-size:12px}.wordmark{font-size:22px}.character-grid{grid-template-columns:1fr}.derived-panel{display:block;grid-column:auto}.derived-panel .divider{display:block}.derived-panel .target-settings{margin-top:20px}.build-topline{align-items:flex-start}.build-topline>button{font-size:11px;max-width:135px;padding:9px}h1{font-size:29px}.panel{padding:21px}.formula-grid,.legend-grid{grid-template-columns:1fr}.legend-grid{gap:18px}.compare-head{grid-template-columns:1fr 1fr}.compare-head>div:first-child{grid-column:1/-1}.compare-head h3{font-size:18px}footer{letter-spacing:.04em}.notice{align-items:flex-start}.notice .status-dot{margin-top:6px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.skills-intro{display:none!important}
+.attr-values strong{font:25px Georgia,serif;color:var(--text);font-variant-numeric:tabular-nums}.cap-breakdown{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:11px;margin:7px 0;color:var(--muted)}.cap-breakdown>span:first-child{color:var(--gold)}.age-adjustment{color:#a9c4da}.weight-adjustment{color:#d3bb98}.base-potential{opacity:.8}.investment-row{display:flex;gap:12px;align-items:center}.investment-row input[type=range]{flex:1;min-width:0;margin:0}.invested-input{display:flex;flex-direction:column;align-items:center;gap:2px;flex:none;color:var(--muted);font-size:9px}.invested-input input{width:62px;padding:4px;text-align:center;font-size:14px}.allocation-detail{font-size:10px;line-height:1.5;color:var(--accent);min-height:15px;margin-top:4px}.allocation-detail.penalty{color:var(--gold)}
+@media print{body{background:#fff;color:#111}.app{max-width:none}.header-actions,.tabs,.notice,.presets,.allocation-footer,footer,#toast{display:none}.panel{break-inside:avoid;box-shadow:none;background:none;border-color:#bbb}.character-grid{display:block}.panel{margin-bottom:15px}:root{--text:#111;--muted:#555;--gold:#685020;--accent:#315a45;--line:#bbb}input,select,button{color:#111!important;background:#fff!important}.tab-panel[hidden]{display:none!important}}
+
+.weight-reference{margin-top:18px}.weight-table-scroll{overflow-x:auto}.weight-reference table{width:100%;border-collapse:collapse;font-size:12px;margin:14px 0}.weight-reference caption{text-align:left;color:var(--muted);font-size:11px;margin-bottom:12px}.weight-reference th,.weight-reference td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:right;white-space:nowrap}.weight-reference th:first-child{text-align:left}.weight-reference tbody th{font-weight:500}.offset-negative{color:var(--red)}.offset-positive{color:var(--accent)}
+
+</style><style>
+.skills-explorer{color:var(--text,#eee6d4);font-family:inherit;--skill-panel:var(--panel,#1c2326);--skill-muted:var(--muted,#a7aaa5);--skill-gold:var(--gold,#d4b675);--skill-line:var(--line,#3d4647);--skill-accent:var(--accent,#7ab8ac)}
+.skills-explorer *{box-sizing:border-box}
+.skills-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:24px}.skills-kicker{font-size:.69rem;font-weight:700;letter-spacing:.19em;color:var(--skill-gold)}.skills-intro h2{font-family:Georgia,serif;font-weight:400;font-size:2.05rem;line-height:1.14;margin:10px 0 12px}.skills-intro p{max-width:650px;margin:0;color:var(--skill-muted);font-size:.92rem;line-height:1.6}.skills-preview-label{display:inline-block;white-space:nowrap;border:1px solid var(--skill-line);padding:7px 10px;border-radius:4px;color:var(--skill-gold);font-size:.71rem;letter-spacing:.03em}
+.skills-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--skill-line);border-radius:8px;background:var(--skill-panel);overflow:hidden}.skills-summary>div{padding:17px 20px;border-right:1px solid var(--skill-line)}.skills-summary>div:last-child{border:0}.skills-summary>div>span{display:block;font-size:.7rem;color:var(--skill-muted);line-height:1.5}.skills-summary strong{display:block;font-size:1.8rem;line-height:1.2;font-variant-numeric:tabular-nums;font-weight:500;margin-top:6px}.skills-summary>div:first-child strong{color:var(--skill-gold)}
+.skills-budget-row{display:flex;align-items:center;gap:24px;justify-content:space-between;margin:12px 0 24px}.skills-budget-row label{font-size:.76rem;white-space:nowrap;color:var(--skill-muted)}.skills-budget-row input{margin-left:8px;width:85px!important}.skills-budget-row p{margin:0;font-size:.75rem;line-height:1.5;color:var(--skill-muted)}.skills-budget-row .skills-over{color:#e5a987}
+.skills-workspace{display:grid;grid-template-columns:minmax(300px,1.03fr) minmax(300px,.97fr);gap:24px;align-items:start}.skills-browser{min-width:0}.skills-filters{display:flex;gap:8px}.skills-search-label{flex:1;min-width:0}.skills-filters input,.skills-filters select,.skills-number{background:var(--skill-panel);border:1px solid var(--skill-line);border-radius:5px;color:var(--text,#eee6d4);font:inherit;font-size:.8rem;padding:10px 12px;min-width:0}.skills-filters input{width:100%}.skills-filters select{height:100%;padding-left:10px;padding-right:25px}.skills-number{width:75px}.skills-tree-toolbar{display:flex;align-items:center;justify-content:space-between;margin:14px 0 10px;font-size:.71rem;color:var(--skill-muted)}.skills-text-button{border:0;background:none;font:inherit;color:var(--skill-gold);cursor:pointer;padding:5px}.skills-tree{border:1px solid var(--skill-line);border-radius:7px;overflow:hidden}.skills-group+.skills-group{border-top:1px solid var(--skill-line)}.skills-group-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--skill-panel);border:0;color:var(--text,#eee6d4);text-align:left;padding:14px 16px;cursor:pointer;font:inherit;font-size:.81rem;font-weight:600;letter-spacing:.02em}.skills-group-count{color:var(--skill-muted);font-size:.7rem;font-weight:400}.skills-group-count>span{display:inline-block;width:20px;text-align:right}.skills-roots,.skills-children{list-style:none;margin:0;padding:0}.skills-roots{padding:8px 10px 10px 5px}.skills-children{margin-left:22px;padding-left:6px;border-left:1px solid var(--skill-line)}.skills-node-row{display:flex;align-items:center}.skills-branch-toggle,.skills-branch-spacer{width:23px;min-width:23px;display:inline-block}.skills-branch-toggle{font:inherit;background:none;color:var(--skill-muted);padding:0;border:0;cursor:pointer;line-height:36px;font-size:1rem}.skills-node-button{min-width:0;flex:1;display:flex;align-items:center;gap:12px;justify-content:space-between;text-align:left;border:1px solid transparent;border-radius:5px;background:transparent;color:var(--text,#eee6d4);font:inherit;cursor:pointer;padding:9px 10px;margin:1px 0}.skills-node-button:hover{background:rgba(165,183,182,.06);border-color:var(--skill-line)}.skills-node-button.is-selected{background:rgba(190,153,89,.11);border-color:var(--skill-gold)}.skills-node-copy{min-width:0}.skills-node-name{display:block;font-size:.84rem;line-height:1.3}.skills-node-meta{font-size:.55rem;letter-spacing:.07em;color:var(--skill-muted);display:block;margin-top:5px}.skills-node-meta>span{padding:0 2px}.skills-node-value{font-size:.93rem;color:var(--skill-muted);font-variant-numeric:tabular-nums}.skills-node-value.is-learned{color:var(--skill-accent)}.skills-context>.skills-node-row .skills-node-copy{opacity:.55}.skills-empty{padding:20px;color:var(--skill-muted);font-size:.85rem}
+.skills-detail{position:sticky;top:24px;padding:24px;background:var(--skill-panel);border:1px solid var(--skill-line);border-radius:8px;min-width:0}.skills-detail-eyebrow{font-size:.64rem;letter-spacing:.1em;color:var(--skill-gold);text-transform:uppercase;line-height:1.6}.skills-detail-eyebrow>span{color:var(--skill-muted)}.skills-detail h3{font-family:Georgia,serif;font-size:1.8rem;font-weight:400;line-height:1.17;margin:12px 0 16px}.skills-detail-tags{display:flex;flex-wrap:wrap;gap:6px}.skills-chip{font-size:.66rem;border:1px solid var(--skill-line);border-radius:4px;padding:5px 8px;color:var(--skill-muted);line-height:1.3}.skills-effect{font-size:.84rem;line-height:1.65;margin:20px 0;color:var(--text,#eee6d4)}.skills-parent{padding:12px 0;border-top:1px solid var(--skill-line);border-bottom:1px solid var(--skill-line)}.skills-parent>span{font-size:.65rem;color:var(--skill-muted);display:block;margin-bottom:6px}.skills-parent strong{font-size:.76rem;font-weight:500;line-height:1.5;display:block}.skills-note{font-size:.72rem;line-height:1.6;color:var(--skill-muted);margin:12px 0}.skills-check{display:flex;align-items:flex-start;gap:8px;margin:20px 0 12px;font-size:.8rem;line-height:1.5}.skills-check input{accent-color:var(--skill-gold);margin:3px 0 0}.skills-candidate{color:var(--skill-gold)}
+.skills-effective-box{margin:18px 0 22px}.skills-effective-box>span{font-size:.71rem;color:var(--skill-muted)}.skills-effective-box>strong{font-weight:500;font-size:2.1rem;display:block;line-height:1.3;font-variant-numeric:tabular-nums;margin-top:4px;color:var(--skill-gold)}.skills-effective-box small{font-size:.85rem;color:var(--skill-muted);font-weight:400}.skills-progress{height:5px;background:rgba(0,0,0,.23);border-radius:5px;margin-top:10px;overflow:hidden}.skills-progress>span{display:block;height:100%;background:var(--skill-gold);transition:width .1s linear}.skills-training-label{display:flex;align-items:center;justify-content:space-between;font-size:.76rem;color:var(--skill-muted)}.skills-training-label output{color:var(--text,#eee6d4);font-variant-numeric:tabular-nums;font-size:.91rem}.skills-range{width:100%;accent-color:var(--skill-gold);margin:12px 0 15px;cursor:pointer}.skills-edit-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.skills-small-button{padding:9px 10px;background:transparent;color:var(--text,#eee6d4);font:inherit;font-size:.71rem;border:1px solid var(--skill-line);border-radius:4px;cursor:pointer}.skills-small-button:hover{border-color:var(--skill-gold)}.skills-small-button:disabled,.skills-range:disabled{opacity:.4;cursor:not-allowed}.skills-detail-totals{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0;padding:16px 0;border-top:1px solid var(--skill-line);border-bottom:1px solid var(--skill-line)}.skills-detail-totals div{display:flex;align-items:center;justify-content:space-between;gap:8px}.skills-detail-totals dt{font-size:.69rem;color:var(--skill-muted)}.skills-detail-totals dd{margin:0;font-size:.88rem;font-variant-numeric:tabular-nums}.skills-external{border:1px solid var(--skill-line);border-radius:5px;padding:14px;margin-top:16px}.skills-external>label{font-size:.78rem}.skills-taming-numbers{display:flex;gap:12px;justify-content:space-between;font-size:.72rem;color:var(--skill-muted);line-height:1.5}.skills-taming-numbers strong{color:var(--skill-accent)}.skills-external .skills-note{margin-bottom:0}.skills-footer{margin-top:22px;padding-top:18px;border-top:1px solid var(--skill-line);color:var(--skill-muted);font-size:.72rem;line-height:1.65;max-width:900px}.skills-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skills-explorer [hidden]{display:none!important}.skills-explorer button:focus-visible,.skills-explorer input:focus-visible,.skills-explorer select:focus-visible{outline:2px solid var(--skill-accent);outline-offset:3px}
+@media(max-width:850px){.skills-workspace{grid-template-columns:1fr;gap:18px}.skills-detail{position:static}.skills-tree{max-height:570px;overflow:auto}.skills-budget-row{align-items:flex-start;flex-direction:column;gap:10px}.skills-summary>div{padding:14px}.skills-intro h2{font-size:1.7rem}}
+@media(max-width:480px){.skills-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.skills-summary>div:nth-child(2){border-right:0}.skills-summary>div:nth-child(-n+2){border-bottom:1px solid var(--skill-line)}.skills-summary>div>span{font-size:.64rem}.skills-intro{gap:12px}.skills-preview-label{font-size:.61rem;padding:5px 7px}.skills-detail{padding:18px}.skills-filters{flex-direction:column}.skills-filters select{width:100%}.skills-summary strong{font-size:1.55rem}.skills-budget-row label{white-space:normal}.skills-children{margin-left:15px;padding-left:4px}.skills-node-meta{font-size:.49rem}}
+
+</style><style>
+.world-origin{margin:14px 0 20px;font-size:12px;line-height:1.65;color:var(--muted)}
+.world-origin-story+.world-origin-story{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.world-origin-title{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--gold);font-size:12px;margin-bottom:5px}
+.world-origin-title>span:not(.eyebrow){font-variant-numeric:tabular-nums}
+.world-origin .world-origin-home{font-family:Georgia,serif;font-size:15px;color:var(--text);line-height:1.5;margin:0 0 8px}
+.world-origin-intro{color:var(--accent);border-left:2px solid var(--accent);padding-left:12px;margin-bottom:16px}
+.world-law .law-principle{border-left:3px solid var(--gold);margin-bottom:18px}
+.world-law .law-principle h2{font:22px Georgia,serif;line-height:1.4}
+.world-law .law-principle p{max-width:1000px;font-size:14px;color:var(--muted);margin-top:11px}
+.law-explorer{margin-bottom:18px}
+.law-explorer .section-heading{margin-bottom:9px}
+.law-controls{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:20px;align-items:center;margin:8px 0}
+.law-flags{display:flex;flex-direction:column;gap:15px;padding-top:10px}
+.law-flags input{flex-shrink:0}
+.law-controls .field{margin:10px 0}
+.law-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:23px}
+.law-result{border:1px solid var(--line);border-top:3px solid var(--gold);background:#10181988;border-radius:5px;padding:18px;min-width:0}
+.law-result h3{font-family:Georgia,serif;font-size:19px;line-height:1.4;margin:10px 0}
+.law-result p{font-size:12px;line-height:1.65;color:var(--muted)}
+.law-result .law-incident-note{font-size:10px;margin-top:12px;color:var(--muted)}
+.law-danger{border-top-color:var(--red)}.law-danger h3{color:var(--red)}
+.law-safe{border-top-color:var(--accent)}.law-safe h3{color:var(--accent)}
+.law-warning{border-top-color:var(--gold)}.law-warning h3{color:var(--gold)}
+.law-neutral{border-top-color:var(--blue)}
+.law-default-note{margin-top:18px!important}.law-default-note .tag{margin-right:6px}
+.law-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.law-colors>.hint{margin-top:10px}
+.law-colors dl{margin:13px 0 0}.law-colors dl>div{display:grid;grid-template-columns:115px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.law-colors dl>div:last-child{border-bottom:0;padding-bottom:0}
+.law-colors dt{display:flex;align-items:baseline;gap:8px;font-weight:600;font-size:12px}
+.law-colors dd{margin:0;font-size:12px;color:var(--muted);line-height:1.7}
+.law-dot{display:inline-block;flex-shrink:0;width:8px;height:8px;border-radius:50%;border:1px solid #fff4}
+.law-dot.blue{background:#79aee9}.law-dot.purple{background:#b594e0}.law-dot.red{background:#e58276}.law-dot.dark{background:#627175}.law-dot.light{background:#d1d8d5}
+.law-explainer p,.law-footnote p{font-size:12px;line-height:1.75;color:var(--muted);margin-top:12px}
+.law-explainer h3{margin-top:21px;color:var(--gold);font-size:13px}
+.law-explainer details{margin-top:19px;border-top:1px solid var(--line);padding-top:14px}
+.law-explainer summary{font-size:13px;color:var(--gold)}
+.law-footnote{margin-top:18px}
+.law-footnote-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:19px}
+.law-footnote-grid h3{font-size:13px;color:var(--gold)}
+@media(max-width:1120px){.law-controls{grid-template-columns:1fr 1fr}.law-flags{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;padding-top:0;margin-bottom:12px}.law-colors dl>div{grid-template-columns:1fr;gap:6px}}
+@media(max-width:740px){.law-controls,.law-results,.law-detail-grid,.law-footnote-grid{grid-template-columns:1fr}.law-controls{gap:0}.law-flags{margin-top:10px}.law-results{gap:12px}.law-result{padding:17px}.law-footnote-grid{gap:22px}.law-explorer .section-heading{align-items:flex-start}.world-law .law-principle h2{font-size:20px}}
+
+</style></head>
+<body>
+<div class="app">
+  <header class="masthead">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">I</span><div><div class="wordmark">IRONBOUND</div><div class="eyebrow">Character planner / design preview</div></div></div>
+    <div class="header-actions"><span class="offline">● Works offline</span><button id="export-build">Save build</button><button id="import-build">Load build</button><input id="build-file" type="file" accept=".json,application/json" hidden></div>
+  </header>
+  <nav class="tabs" aria-label="Planner sections"><button class="active" data-tab="character" aria-selected="true">Character sheet</button><button data-tab="skills" aria-selected="false">Action skills</button><button data-tab="compare" aria-selected="false">Compare builds</button><button data-tab="law" aria-selected="false">Law &amp; belonging</button><button data-tab="rules" aria-selected="false">Rules &amp; formulas</button></nav>
+  <div class="notice"><span class="status-dot"></span><p><strong>A working model of the game.</strong> Established design rules and existing tuning defaults are preserved. New illustrative formulas are marked <span class="tag demo">Preview</span>; this is not the live Unreal character system.</p></div>
+  <main>
+    <section id="panel-character" class="tab-panel">
+      <div class="build-topline"><div><div class="eyebrow">Build your character</div><h1 id="build-title">Dommer</h1><p id="build-subtitle" class="muted">Age 30 · Fit</p></div><button id="pin-build" class="accent-button">Pin for comparison</button></div>
+      <div class="character-grid">
+        <aside class="panel origins">
+          <div class="section-heading"><span class="section-number">01</span><h2>Origin &amp; body</h2></div>
+          <label class="field">People<select id="family"><option value="Human">Humans</option><option value="Elf">Elves</option><option value="Dwarf">Dwarves</option><option value="Orc">Titans</option><option value="Giantkin">Giantkin</option></select></label>
+          <label class="field">Lineage<select id="lineage"></select></label>
+          <p id="lineage-description" class="flavor"></p><div id="origin-guide"></div>
+          <label class="check-line" id="mixed-label"><input id="mixed" type="checkbox"> Blend ancestry <span class="tag demo">Preview math</span></label>
+          <div id="ancestry-fields" hidden><label class="field" id="second-lineage-label">Second lineage<select id="secondary-lineage"></select></label><label class="slider-label" for="ancestry"><span id="ancestry-label">Primary ancestry</span><output id="ancestry-value">75%</output></label><input id="ancestry" type="range" min="6.25" max="93.75" step="6.25" value="75"><p class="hint">6.25% steps. Cap and pool interpolation is a planner assumption.</p></div>
+          <div id="recognition" class="recognition"></div>
+          <div class="divider"></div>
+          <label class="slider-label" for="age"><span>Age index</span><output id="age-value">30</output></label><input id="age" type="range" min="18" max="80" step="1" value="30"><div class="range-labels"><span>18</span><span>80</span></div><p class="hint">Build age, not automatic aging. The same design index currently applies to all peoples.</p>
+          <label class="field">Weight class<select id="body"></select></label><label class="slider-label" for="weight"><span>Body weight</span><output id="weight-value">50% · Fit</output></label><input id="weight" type="range" min="0" max="100" step="1" value="50"><div class="range-labels"><span>0% · Emaciated</span><span>100% · Obese</span></div>
+          <p id="body-note" class="hint"></p><p class="hint">This is the body-weight scale, not body-fat percentage or kilograms. Class boundaries and direct HP are tuning defaults.</p>
+          <label class="slider-label" for="height"><span>Height</span><output id="height-value">186 cm</output></label><input id="height" type="range" min="168" max="206" step="2" value="186"><div class="range-labels"><span id="height-min"></span><span id="height-max"></span></div><p id="height-cost" class="hint"></p>
+        </aside>
+        <section class="panel attributes-panel">
+          <div class="section-heading"><span class="section-number">02</span><h2>Attributes</h2><span class="tag">Effective / max</span></div>
+          <div class="budget-line"><div><span class="muted">Points remaining</span><strong id="points-remaining">0</strong></div><div class="budget-total"><span id="points-spent"></span><span id="points-pool"></span></div></div>
+          <div class="budget-track"><div id="budget-fill"></div></div>
+          <div class="presets" aria-label="Example allocations"><button data-preset="Balanced">Balanced</button><button data-preset="Fighter">Fighter</button><button data-preset="Hybrid" class="selected">Hybrid</button><button data-preset="Mage">Mage</button></div>
+          <p class="hint">Sliders spend points. Weight penalties must be paid through before a score rises above 10. Height shares the pool. Max breakdown: (age), then [weight].</p>
+          <div id="attribute-controls"></div>
+          <div class="allocation-footer"><button id="clear-points" class="quiet">Return all attribute points</button><span class="hint">Caps are potential, not free points.</span></div>
+        </section>
+        <section class="panel derived-panel">
+          <div class="section-heading"><span class="section-number">03</span><h2>Combat profile</h2></div>
+          <div id="vital-metrics" class="vital-metrics"></div>
+          <div class="divider"></div>
+          <div id="combat-metrics" class="metric-list"></div>
+          <details class="target-settings"><summary>Duration against a target</summary><label class="slider-label" for="target-psyche"><span>Target Psyche</span><output id="target-psyche-value">100</output></label><input id="target-psyche" type="range" min="10" max="150" value="100"><p id="duration-description" class="hint"></p></details>
+          <p class="hint sheet-note">Attribute and body preview. Equipment, training effects, buffs and combat conditions are not yet layered onto these totals.</p>
+        </section>
+      </div>
+      <div id="change-message" class="change-message" role="status" aria-live="polite"></div>
+    </section>
+    <section id="panel-skills" class="tab-panel" hidden><div class="build-topline"><div><div class="eyebrow">Specialize without a fixed class</div><h1>Action skill tree</h1><p class="muted">Shared melee proficiency. Free weapon-family secondaries. Separate profession progression.</p></div><span id="skills-character" class="tag"></span></div><div id="skills-root"></div></section>
+    <section id="panel-compare" class="tab-panel" hidden><div class="build-topline"><div><div class="eyebrow">Understand the tradeoffs</div><h1>Compare builds</h1><p class="muted">Pin one build, then change the current character. Both use the same target Psyche.</p></div><button id="replace-pin" class="accent-button">Pin current build</button></div><div id="comparison"></div></section>
+    <section id="panel-law" class="tab-panel" hidden></section>
+    <section id="panel-rules" class="tab-panel" hidden><div class="build-topline"><div><div class="eyebrow">What the numbers mean</div><h1>Rules &amp; formulas</h1><p class="muted">The distinction between game design and a useful numerical preview.</p></div></div><div class="rules-intro panel"><h2>Three kinds of numbers</h2><div class="legend-grid"><div><span class="tag settled">Established</span><p>Decided relationships: six attributes, weight-class modifiers, paid allocation, 10-point effective floors, height cost, weighted mental scores and bounded duration.</p></div><div><span class="tag">Tuning default</span><p>Existing design values: lineage caps and pools, age offsets and the prototype's combat references. These remain adjustable through balancing.</p></div><div><span class="tag demo">Preview</span><p>New illustrative values for unfinished curves, direct body HP and mixed ancestry. They are local to this planner and do not change the game specification.</p></div></div></div><section class="panel weight-reference"><h2>Eleven weight classes</h2><div id="weight-table"></div></section><div id="formula-list" class="formula-grid"></div><section class="panel rules-footnote"><h2>Scope</h2><p>Fictional gameplay profiles describe available builds in Ironbound. Presets are examples, and equal point totals do not establish equal combat strength. Changing age changes caps, not the allocation pool. The planner refunds points when it trims a build to new limits; that is a preview convenience, not an in-game respec rule.</p><p>The skill tree retains proposed entries and unresolved gates. It does not grant profession skills, books or trained abilities to a live character. Skill effects are not added to the combat-profile totals until their curves are defined.</p><p>Source snapshot: the Ironbound design handoff, 14 October 2026, plus its existing combat prototype. All functionality runs locally; no account or connection is needed.</p></section></section>
+  </main>
+  <footer><span>IRONBOUND / A world of choices</span><span>Offline design planner · v2</span></footer>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</div>
+<script>
+/* Offline planner snapshot. Canonical design files remain the source of authority. */
+(function (root) {
+  'use strict';
+  const stats = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Psyche'];
+  const caps = values => Object.fromEntries(stats.map((stat, index) => [stat, values[index]]));
+  const lineage = (name, category, values, heights, pool, multiplier, ratings, description, playable = true) => ({
+    name, category, caps: caps(values), minHeight: heights[0], maxHeight: heights[1], pool, multiplier,
+    ratings: { ...caps(ratings), Height: ratings[6] }, description, playable,
+    status: name === 'Dommer' ? 'decided_caps_authored_height_budget' : 'authored_default'
+  });
+  const lineages = {
+    Dommer: lineage('Dommer', 'Human', [100, 100, 100, 100, 100, 100], [168, 206], 432, 1.08, [5, 5, 5, 5, 5, 5, 7], 'Even baseline caps and a broad allocation pool.'),
+    Hladan: lineage('Hladan', 'Human', [109, 94, 109, 93, 94, 93], [178, 214], 420, 1.05, [7, 4, 7, 4, 4, 4, 8], 'Higher Strength, Constitution and height potential.'),
+    Nubian: lineage('Nubian', 'Human', [99, 105, 101, 101, 99, 103], [166, 198], 420, 1.05, [5, 6, 5, 5, 5, 6, 6], 'Broad attribute potential with modest Dexterity and Psyche advantages.'),
+    Wuri: lineage('Wuri', 'Human', [94, 111, 99, 88, 101, 113], [162, 192], 420, 1.05, [4, 8, 5, 3, 5, 8, 5], 'Higher Dexterity and Psyche potential, with lower Intelligence potential.'),
+    Yurtan: lineage('Yurtan', 'Human', [94, 99, 105, 101, 99, 104], [166, 198], 432, 1.08, [4, 5, 6, 5, 5, 6, 6], 'A broad allocation pool, with Constitution and Psyche emphasis.'),
+    Mashi: lineage('Mashi', 'Human', [95, 109, 99, 109, 103, 99], [158, 186], 420, 1.05, [4, 7, 5, 7, 6, 5, 4], 'Dexterity and Intelligence emphasis with moderate height.'),
+    Keldren: lineage('Keldren', 'Elf', [112, 82, 107, 75, 120, 105], [172, 204], 390, 0.975, [8, 2, 7, 1, 10, 6, 7], 'Exceptional Wisdom potential, strong physical caps and lower Dexterity/Intelligence.'),
+    Sairen: lineage('Sairen', 'Elf', [83, 115, 104, 113, 103, 108], [152, 174], 400, 1, [2, 9, 6, 8, 6, 7, 2], 'High Dexterity and Intelligence potential, with lower Strength.'),
+    Verathi: lineage('Verathi', 'Elf', [94, 118, 105, 104, 101, 104], [158, 180], 400, 1, [4, 10, 6, 6, 5, 6, 3], 'Highest baseline Dexterity cap and flexible supporting attributes.'),
+    Khazad: lineage('Khazad', 'Dwarf', [116, 82, 120, 101, 99, 112], [158, 180], 381, 0.952, [9, 2, 10, 5, 5, 8, 3], 'Strong Strength, Constitution and Psyche potential, with lower Dexterity.'),
+    Friode: lineage('Friode', 'Dwarf', [116, 82, 120, 117, 99, 104], [154, 174], 372, 0.93, [9, 2, 10, 9, 5, 6, 2], 'Strong physical and Intelligence caps within a tighter allocation pool.'),
+    Iwaman: lineage('Iwaman', 'Dwarf', [108, 88, 116, 117, 104, 111], [144, 162], 372, 0.93, [7, 3, 9, 9, 6, 8, 1], 'Low height, high Constitution and strong mental potential.'),
+    Titans: lineage('Titans', 'Orc', [120, 94, 113, 93, 94, 104], [184, 222], 356, 0.89, [10, 4, 8, 4, 4, 6, 9], 'Highest playable baseline Strength and height, with a restrictive allocation pool.'),
+    Giantkin: { name: 'Giantkin', category: 'Giantkin', playable: true, requiresAncestry: true, status: 'planner_preview', description: 'Human–Titan ancestry. Attribute interpolation is an illustrative preview; homeland recognition is always excluded.' },
+    Colossi: lineage('Colossi', 'Orc', [120, 94, 112, 75, 75, 104], [204, 228], null, 1, [10, 4, 8, 1, 1, 6, 10], 'NPC only. Intelligence characterization remains unresolved; not a playable build.', false)
+  };
+  const weight = {
+    minimum: 0, maximum: 100, step: 1, classStep: 10,
+    classMapping: 'nearest_anchor', classMappingStatus: 'planner_preview',
+    healthMinimum: -15, healthMaximum: 35, healthPerPercent: 0.5,
+    healthStatus: 'planner_preview',
+    rule: 'Weight classes use the nearest 10% anchor. Attribute modifiers and direct health change together by class; the selected weight percentage can vary within a class.',
+    healthRule: 'Direct health = −15 + 0.5 × class anchor percent. Each class has one HP value, including Fit +10 and Obese +35. These HP amounts are illustrative.'
+  };
+  const body = (name, weightPercent, values, description) => ({
+    name, weightPercent, offsets: caps(values), healthBonus: weight.healthMinimum + weight.healthPerPercent * weightPercent,
+    status: 'decided_modifiers', healthStatus: 'planner_preview', description
+  });
+  const bodies = {
+    Emaciated: body('Emaciated', 0, [-25, 20, -20, -5, 0, -10], 'Largest Dexterity bonus, with large paid Strength/Constitution penalties and lower Intelligence/Psyche.'),
+    Skinny: body('Skinny', 10, [-20, 16, -15, 0, 0, -5], 'Strong Dexterity bonus, with paid Strength/Constitution penalties and a small Psyche penalty.'),
+    Thin: body('Thin', 20, [-15, 12, -10, 0, 0, 0], 'Dexterity bonus with paid Strength and Constitution penalties.'),
+    Slender: body('Slender', 30, [-10, 8, -5, 0, 0, 0], 'A moderate Dexterity bonus at a smaller physical cost.'),
+    Lean: body('Lean', 40, [-5, 4, 0, 0, 0, 0], 'A small Dexterity bonus and Strength penalty; other attributes unchanged.'),
+    Fit: body('Fit', 50, [0, 0, 0, 0, 0, 0], 'The zero-modifier attribute baseline. Weight-class HP is modeled separately.'),
+    Muscular: body('Muscular', 60, [5, 0, 5, 0, 0, 0], 'Strength and Constitution bonuses without other attribute penalties.'),
+    Stout: body('Stout', 70, [2, -5, 0, -5, 0, 0], 'A small Strength bonus with Dexterity and Intelligence penalties.'),
+    Plump: body('Plump', 80, [-5, -10, -5, -5, 0, 0], 'More direct weight HP with physical and Intelligence penalties.'),
+    Chubby: body('Chubby', 90, [-10, -15, -10, -5, 0, 0], 'Higher direct weight HP with larger physical penalties.'),
+    Obese: body('Obese', 100, [-20, -20, -20, -10, 0, -5], 'Highest direct weight HP, offset by large physical penalties and lower Intelligence/Psyche.')
+  };
+  const ageKnots = {
+    Strength: [[18, -4], [30, 0], [67, -10], [80, -18]],
+    Dexterity: [[18, 3], [30, 0], [67, -8], [80, -12]],
+    Constitution: [[18, -3], [30, 0], [67, -6], [80, -12]],
+    Intelligence: [[18, -3], [25, 0], [67, 0], [80, -6]],
+    Wisdom: [[18, -10], [30, 0], [67, 12], [80, 12]],
+    Psyche: [[18, -16], [30, 0], [67, 16], [80, 16]]
+  };
+  const heightAgeBands = [
+    { min: 18, max: 21, offset: -4 }, { min: 22, max: 25, offset: -2 },
+    { min: 26, max: 60, offset: 0 }, { min: 61, max: 65, offset: -2 },
+    { min: 66, max: 70, offset: -4 }, { min: 71, max: 75, offset: -6 },
+    { min: 76, max: 80, offset: -8 }
+  ];
+  const metric = (label, unit, status, formula, note) => ({ label, unit, status, formula, note });
+  const metricDefinitions = {
+    health: metric('Health', 'HP', 'mixed', '80 + 0.8 × (effective Constitution + height points × 2/3) + weight-class HP', 'Health and height coefficients match the Unreal training slice. Each weight class adds one illustrative HP amount, from −15 Emaciated to +35 Obese; Fit adds +10.'),
+    stamina: metric('Stamina', 'SP', 'prototype', '30 + 0.4 × (Constitution + Strength/2 + Dexterity/2)', 'Matches the training slice. Strength and Dexterity each contribute half as much as Constitution.'),
+    mana: metric('Mana', 'MP', 'planner_preview', '20 + 0.30 × (Intelligence + Psyche + 1.18 × Wisdom)', 'The 18% stronger Wisdom contribution is decided; base 20 and coefficient 0.30 are illustrative.'),
+    healthRegen: metric('Resting health recovery', 'HP/s', 'planner_preview', 'maximum health × 0.005', 'Illustrative resting rate, absent incoming damage. Combat recovery, food and reserves are not simulated.'),
+    staminaRegen: metric('Ready stamina recovery', 'SP/s', 'prototype', '9 per second after 0.75 seconds without exertion, while Ready', 'Matches the training slice. Recovery is conditional, not active during every combat action.'),
+    manaRegen: metric('Resting mana recovery', 'MP/s', 'planner_preview', 'maximum mana × 0.01', 'Proportional regeneration is decided. The 1% per-second fraction and resting conditions are illustrative; no second Wisdom regeneration bonus.'),
+    speed: metric('Movement speed', 'm/s', 'prototype', '5 × clamp(1 + (Dexterity − 100) × 0.001, 0.92, 1.04)', 'Matches the training slice. No extra Elf or lineage speed multiplier is added.'),
+    exertedSpeed: metric('Exerted speed', 'm/s', 'prototype', 'normal movement speed × 1.4', 'Holding Shift drains 12 stamina per second, including at rest; movement and turning share one drain.'),
+    meleeBonus: metric('Melee damage adjustment', '%', 'prototype', '100 × (max(0.1, 1 + (Strength − 100 + ((height − 180)/2) × 2/3) × 0.002) − 1)', 'Relative to Strength 100 at 180 cm, matching the training sword calculation. Weapon, charge, skill and armor still matter.'),
+    carryWeight: metric('Carrying capacity', 'kg', 'planner_preview', '20 + 0.35 × (Strength + Constitution/2 + 2 × height points)', 'Illustrative capacity; preserves height at twice Strength per invested point. Equipment and bags are not modeled.'),
+    armorWeight: metric('Armor capacity', 'kg', 'planner_preview', '5 + 0.12 × (Strength + Constitution/2 + height points)', 'Illustrative capacity; height and Strength have equal per-point contribution. Armor burden/skills are not simulated.'),
+    castTimeMultiplier: metric('Casting time', '× base', 'mixed', '1 − 0.15 × clamp((Intelligence − 10)/120, 0, 1)', 'The 1.00–0.85 range is decided; reaching the ceiling at Intelligence 130 is an illustrative mapping.'),
+    hostileDurationMultiplier: metric('Direct hostile duration', '× base', 'mixed', '1 + 0.18 × clamp((caster Psyche − target Psyche)/120, 0, 1)', 'The opposed Psyche rule and 1.00–1.18 bounds are decided. A 120-point difference for full extension is illustrative. Applies only to eligible direct hostile debuffs.'),
+    buffDurationMultiplier: metric('Eligible beneficial duration', '× base', 'mixed', '1 + 0.18 × clamp((caster Psyche − 10)/120, 0, 1)', 'Uses caster Psyche alone. The 1.18 ceiling is decided; the mapping is illustrative. Not a universal summon/ground-effect lifetime bonus.'),
+    effectiveOffense: metric('Effective spell offense', 'score', 'decided', '(2 × Intelligence + Wisdom) / 3', 'A shared attribute score, not a damage percentage. Final spell curves and base damages remain tunable.'),
+    effectiveResistance: metric('Effective spell resistance', 'score', 'decided', '(2 × Psyche + Wisdom) / 3', 'A shared attribute score, not guaranteed damage reduction or resist chance. Does not enter hostile-duration opposition.'),
+    bookTrainingMultiplier: metric('Book learning speed', '× base', 'planner_preview', '1 + 0.25 × clamp(((Intelligence + Wisdom)/2 − 10)/120, 0, 1)', 'Illustrative equal contribution to learning speed. Exact book training rules remain unresolved.'),
+    exertionSeconds: metric('Full-pool exertion', 's', 'prototype', 'maximum stamina / 12', 'Continuous Shift from a full pool without other stamina spending or recovery; a capacity estimate, not a combat simulation.'),
+    turnSpeed: metric('Turning limit', 'degrees/s', 'prototype', '360 normally; 540 while exerting', 'Universal across lineages, independent of Dexterity and movement speed.')
+  };
+  root.IronboundData = {
+    version: '2.0.0', snapshotDate: '2026-10-14', stats, lineages, bodies, weight, ageKnots, heightAgeBands, metricDefinitions,
+    attributeFloor: 10, baseAllocationPool: 400, referenceAge: 30, referenceBody: 'Fit', heightBaseline: 150,
+    heightStep: 2, ancestryStep: 6.25, recognitionThreshold: 75,
+    humanLineages: ['Dommer', 'Hladan', 'Nubian', 'Wuri', 'Yurtan', 'Mashi'],
+    playableLineages: Object.keys(lineages).filter(key => lineages[key].playable),
+    presets: ['Balanced', 'Fighter', 'Mage', 'Hybrid'],
+    sources: ['attributes-and-body.yaml', 'world-geography-and-standing.yaml', 'orc-peoples.yaml', 'execution-decisions.yaml', 'IronboundCombatComponent.cpp', 'IronboundMovementComponent.cpp', 'IronboundCombatSettings.h'],
+    statusLabels: { decided: 'Design rule', decided_modifiers: 'Design modifiers', prototype: 'Unreal prototype', mixed: 'Rule + preview curve', planner_preview: 'Illustrative preview', authored_default: 'Authored default' },
+    statDescriptions: {
+      Strength: 'Melee power, weapon requirements, stamina, carrying and armor capacity; physical skill bonuses.',
+      Dexterity: 'Movement, stamina, unblocked gap-hit potential and athletic skill bonuses. Never bypasses a correct block.',
+      Constitution: 'Health, stamina and physical carrying capacities.',
+      Intelligence: 'Two shares of spell offense, faster casting, mana and book learning.',
+      Wisdom: 'One share of spell offense and resistance, stronger mana contribution and book learning.',
+      Psyche: 'Two shares of spell resistance, mana and eligible spell duration.'
+    },
+    notices: [
+      'Character caps are potential limits; allocation points prevent maximizing every attribute at once.',
+      'Age is a character-design index from 18 to 80. It does not imply real-time aging or a lifespan limit.',
+      'Weight attribute modifiers and stepped health behavior are design choices. Exact class boundaries, weight-class HP amounts, mixed-ancestry interpolation and several derived curves are illustrative.',
+      'Allocation buys raw scores above 10. Weight modifies effective scores once; a negative modifier costs points to overcome before the effective score can rise above 10.',
+      'Changing lineage or age may clamp raw investment in this preview. Changing weight preserves raw investment. This is not a decided live-game respec policy.',
+      'These are fictional gameplay profiles, not biological claims about real peoples.',
+      'Gear, spell selection, skills, reserves, injuries, buffs and combat timing are outside these naked-character estimates.'
+    ]
+  };
+})(window);
+
+</script><script>
+(function (root) {
+  'use strict';
+  const D = root.IronboundData;
+  const finite = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
+  const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
+  const round = value => Math.floor(value + 0.5);
+  const heightGrid = value => D.heightBaseline + D.heightStep * round((value - D.heightBaseline) / D.heightStep);
+  const interpolate = (age, knots) => {
+    if (age <= knots[0][0]) return knots[0][1];
+    for (let index = 1; index < knots.length; index += 1) {
+      const [a, x] = knots[index - 1];
+      const [b, y] = knots[index];
+      if (age <= b) return x + (y - x) * (age - a) / (b - a);
+    }
+    return knots[knots.length - 1][1];
+  };
+  function getWeightProfile(requestedPercent, requestedBody = 'Fit') {
+    const fallbackBody = D.bodies[requestedBody] ? requestedBody : 'Fit';
+    const hasPercent = requestedPercent !== undefined && requestedPercent !== null && requestedPercent !== '';
+    const weightPercent = clamp(round(hasPercent ? finite(requestedPercent, D.bodies[fallbackBody].weightPercent) : D.bodies[fallbackBody].weightPercent), D.weight.minimum, D.weight.maximum);
+    const anchorPercent = D.weight.classStep * round(weightPercent / D.weight.classStep);
+    const body = Object.keys(D.bodies).find(name => D.bodies[name].weightPercent === anchorPercent) || fallbackBody;
+    return {
+      body, weightPercent, anchorPercent,
+      healthBonus: D.bodies[body].healthBonus
+    };
+  }
+  function getProfile(options = {}) {
+    const requested = options.lineage || 'Dommer';
+    const virtual = requested === 'Giantkin';
+    const first = virtual ? 'Titans' : requested;
+    const row = D.lineages[first];
+    if (!row || !row.playable || row.requiresAncestry) throw new Error('Choose a playable lineage. Colossi are NPC-only.');
+    const age = clamp(round(finite(options.age, 30)), 18, 80);
+    const weightProfile = getWeightProfile(options.weightPercent, options.body);
+    const body = weightProfile.body;
+    let secondary = options.secondaryLineage || (virtual ? 'Dommer' : null);
+    if (secondary === first || secondary === 'None' || secondary === 'none') secondary = null;
+    let share = secondary ? clamp(round(finite(options.ancestryPercent, 50) / D.ancestryStep) * D.ancestryStep, 0, 100) : 100;
+    const notes = [];
+    let isGiantkin = false;
+    if (secondary) {
+      const other = D.lineages[secondary];
+      if (!other || !other.playable || other.requiresAncestry) throw new Error('The second ancestry must be a playable pure lineage.');
+      isGiantkin = (first === 'Titans' && other.category === 'Human') || (secondary === 'Titans' && row.category === 'Human');
+      const sameGroup = row.category === other.category && ['Human', 'Elf', 'Dwarf'].includes(row.category);
+      if (!isGiantkin && !sameGroup) throw new Error('Mix within Human, Elf or Dwarf lineages, or use human–Titan Giantkin.');
+      if (isGiantkin) {
+        const titanShare = clamp(first === 'Titans' ? share : 100 - share, 31.25, 75);
+        share = first === 'Titans' ? titanShare : 100 - titanShare;
+        notes.push('Giantkin never gain homeland recognition, including at 75% Titan ancestry.');
+      }
+    }
+    if (virtual && !isGiantkin) throw new Error('Giantkin require one human ancestry and Titan ancestry.');
+    let ancestry = secondary ? [{ lineage: first, percent: share }, { lineage: secondary, percent: 100 - share }] : [{ lineage: first, percent: 100 }];
+    ancestry = ancestry.filter(entry => entry.percent > 0);
+    const mixed = ancestry.length > 1;
+    const weighted = accessor => ancestry.reduce((sum, entry) => sum + accessor(D.lineages[entry.lineage]) * entry.percent / 100, 0);
+    const baselineCaps = Object.fromEntries(D.stats.map(stat => [stat, weighted(item => item.caps[stat])]));
+    const ageOffsets = Object.fromEntries(D.stats.map(stat => [stat, interpolate(age, D.ageKnots[stat])]));
+    const bodyOffsets = { ...D.bodies[body].offsets };
+    // Age changes the paid raw allocation ceiling. Weight is applied once after raw investment.
+    const profileCaps = Object.fromEntries(D.stats.map(stat => [stat, Math.max(D.attributeFloor, round(baselineCaps[stat] + ageOffsets[stat]))]));
+    const effectiveCaps = Object.fromEntries(D.stats.map(stat => [stat, Math.max(D.attributeFloor, profileCaps[stat] + bodyOffsets[stat])]));
+    const heightOffset = D.heightAgeBands.find(band => age >= band.min && age <= band.max).offset;
+    const minHeight = heightGrid(weighted(item => item.minHeight)) + heightOffset;
+    const maxHeight = heightGrid(weighted(item => item.maxHeight)) + heightOffset;
+    const multiplier = weighted(item => item.multiplier);
+    const pool = round(D.baseAllocationPool * multiplier);
+    const recognition = isGiantkin ? null : (ancestry.find(entry => entry.percent >= D.recognitionThreshold)?.lineage || null);
+    if (mixed) notes.push('Mixed caps, heights and allocation use illustrative weighted interpolation; exact game interpolation remains open.');
+    notes.push('Weight attribute modifiers and direct HP change together by class. The HP amount assigned to each class remains illustrative.');
+    notes.push('Allocation pays for raw scores. Weight modifiers then change effective scores once; negative modifiers must be paid through before rising above the effective floor of 10.');
+    const category = isGiantkin ? 'Giantkin' : D.lineages[ancestry[0].lineage].category;
+    const name = isGiantkin ? `Giantkin (${ancestry.map(entry => `${entry.percent}% ${entry.lineage}`).join(' / ')})` : mixed ? ancestry.map(entry => `${entry.percent}% ${entry.lineage}`).join(' / ') : ancestry[0].lineage;
+    return {
+      lineage: requested, name, category, age, body, weightPercent: weightProfile.weightPercent, healthBonus: weightProfile.healthBonus,
+      caps: profileCaps, effectiveCaps, baselineCaps, ageOffsets, bodyOffsets,
+      minHeight, maxHeight, defaultHeight: heightGrid((minHeight + maxHeight) / 2), heightOffset,
+      pool, multiplier, ancestry, secondaryLineage: secondary, ancestryPercent: share,
+      recognition, mixed, isGiantkin, notes, status: mixed ? 'planner_preview' : 'authored_default'
+    };
+  }
+  function attributeBreakdown(stat, requestedRaw, profile) {
+    if (!D.stats.includes(stat)) throw new Error('Unknown attribute.');
+    const raw = clamp(round(finite(requestedRaw, D.attributeFloor)), D.attributeFloor, profile.caps[stat]);
+    const invested = raw - D.attributeFloor;
+    const weight = finite(profile.bodyOffsets[stat], 0);
+    const penalty = Math.max(0, -weight);
+    const penaltyPaid = Math.min(invested, penalty);
+    const penaltyRemaining = Math.max(0, penalty - invested);
+    const cap = profile.caps[stat];
+    return {
+      invested, raw, effective: Math.max(D.attributeFloor, raw + weight), weight,
+      ageDelta: profile.ageOffsets[stat], baseline: profile.baselineCaps[stat], cap,
+      effectiveCap: profile.effectiveCaps[stat], penaltyPaid, penaltyRemaining,
+      pointsToNext: raw >= cap || raw + penaltyRemaining + 1 > cap ? null : penaltyRemaining + 1
+    };
+  }
+  function effectiveStats(rawStats = {}, profile) {
+    return Object.fromEntries(D.stats.map(stat => [stat, attributeBreakdown(stat, rawStats[stat], profile).effective]));
+  }
+  function account(stats = {}, height, profile) {
+    const selectedHeight = finite(height, profile.defaultHeight);
+    const attributeCost = D.stats.reduce((sum, stat) => sum + finite(stats[stat], D.attributeFloor) - D.attributeFloor, 0);
+    const heightCost = (selectedHeight - D.heightBaseline) / D.heightStep;
+    const spent = attributeCost + heightCost;
+    const remaining = profile.pool - spent;
+    const violations = [];
+    D.stats.forEach(stat => {
+      const value = finite(stats[stat], D.attributeFloor);
+      if (!Number.isInteger(value) || value < D.attributeFloor || value > profile.caps[stat]) violations.push(`${stat} raw allocation must be a whole score from ${D.attributeFloor} to ${profile.caps[stat]}.`);
+    });
+    if (selectedHeight < profile.minHeight || selectedHeight > profile.maxHeight || (selectedHeight - D.heightBaseline) % D.heightStep !== 0) violations.push('Height must stay within this profile’s range on the 2 cm grid.');
+    if (remaining < 0) violations.push(`The build exceeds its allocation pool by ${Math.abs(remaining)} points.`);
+    return { attributeCost, heightCost, spent, remaining, pool: profile.pool, valid: violations.length === 0, violations };
+  }
+  function normalizeBuild(profile, original = {}, requestedHeight) {
+    const changes = [];
+    const rawHeight = finite(requestedHeight, profile.defaultHeight);
+    const height = clamp(heightGrid(rawHeight), profile.minHeight, profile.maxHeight);
+    if (height !== rawHeight) changes.push(`Height adjusted from ${rawHeight} to ${height} cm.`);
+    const stats = {};
+    D.stats.forEach(stat => {
+      const supplied = finite(original[stat], D.attributeFloor);
+      stats[stat] = clamp(round(supplied), D.attributeFloor, profile.caps[stat]);
+      if (stats[stat] !== supplied) changes.push(`${stat} raw allocation adjusted from ${supplied} to ${stats[stat]}.`);
+    });
+    const available = profile.pool - (height - D.heightBaseline) / D.heightStep;
+    const invested = D.stats.reduce((sum, stat) => sum + stats[stat] - D.attributeFloor, 0);
+    if (invested > available) {
+      const factor = Math.max(0, available) / invested;
+      const fractions = D.stats.map((stat, index) => {
+        const desired = (stats[stat] - D.attributeFloor) * factor;
+        stats[stat] = D.attributeFloor + Math.floor(desired);
+        return { stat, fraction: desired % 1, index };
+      });
+      let remainder = available - D.stats.reduce((sum, stat) => sum + stats[stat] - D.attributeFloor, 0);
+      fractions.sort((a, b) => b.fraction - a.fraction || a.index - b.index);
+      for (const entry of fractions) {
+        if (remainder <= 0) break;
+        if (stats[entry.stat] < profile.caps[entry.stat]) { stats[entry.stat] += 1; remainder -= 1; }
+      }
+      changes.push('Attribute investment reduced proportionally to fit the available allocation pool.');
+    }
+    return { stats, height, changes, account: account(stats, height, profile) };
+  }
+  const presetWeights = {
+    Balanced: [1, 1, 1, 1, 1, 1],
+    Fighter: [1.45, 1.35, 1.5, 0.08, 0.38, 1.05],
+    Mage: [0.22, 1.22, 1.15, 1.55, 1.3, 1.2],
+    Hybrid: [1.24, 1.2, 1.24, 1.28, 0.9, 0.34]
+  };
+  function allocatePreset(profile, preset = 'Balanced', height) {
+    const weights = presetWeights[preset] || presetWeights.Balanced;
+    const base = normalizeBuild(profile, {}, height);
+    let remaining = base.account.remaining;
+    const stats = { ...base.stats };
+    // Highest weighted unmet share receives the next point. This creates readable examples, not optimized builds.
+    while (remaining > 0) {
+      let winner = null;
+      let best = -1;
+      D.stats.forEach((stat, index) => {
+        if (stats[stat] >= profile.caps[stat]) return;
+        const priority = weights[index] / (stats[stat] - D.attributeFloor + 1);
+        if (priority > best) { best = priority; winner = stat; }
+      });
+      if (!winner) break;
+      stats[winner] += 1;
+      remaining -= 1;
+    }
+    return { stats, height: base.height, changes: base.changes, account: account(stats, base.height, profile) };
+  }
+  function derive(input = {}, height = 180, body = 'Fit', targetPsyche = 100, weightPercent) {
+    // input contains effective scores. Do not apply age or weight attribute modifiers again here.
+    const stats = Object.fromEntries(D.stats.map(stat => [stat, Math.max(D.attributeFloor, finite(input[stat], D.attributeFloor))]));
+    const { Strength, Dexterity, Constitution, Intelligence, Wisdom, Psyche } = stats;
+    const heightPoints = (finite(height, 180) - D.heightBaseline) / D.heightStep;
+    const weightProfile = getWeightProfile(weightPercent, body);
+    const health = Math.max(1, 80 + 0.8 * (Constitution + heightPoints * 2 / 3) + weightProfile.healthBonus);
+    const stamina = Math.max(1, 30 + 0.4 * (Constitution + Strength / 2 + Dexterity / 2));
+    const mana = 20 + 0.3 * (Intelligence + Psyche + 1.18 * Wisdom);
+    const speed = 5 * clamp(1 + (Dexterity - 100) * 0.001, 0.92, 1.04);
+    const meleeMultiplier = Math.max(0.1, 1 + (Strength - 100 + ((finite(height, 180) - 180) / 2) * 2 / 3) * 0.002);
+    const castTimeMultiplier = 1 - 0.15 * clamp((Intelligence - 10) / 120, 0, 1);
+    const effectiveOffense = (2 * Intelligence + Wisdom) / 3;
+    const effectiveResistance = (2 * Psyche + Wisdom) / 3;
+    return {
+      health, mana, stamina, healthRegen: health * 0.005, manaRegen: mana * 0.01, staminaRegen: 9,
+      speed, exertedSpeed: speed * 1.4, meleeBonus: (meleeMultiplier - 1) * 100, meleeMultiplier,
+      castTimeMultiplier, castRateMultiplier: 1 / castTimeMultiplier,
+      hostileDurationMultiplier: 1 + 0.18 * clamp((Psyche - finite(targetPsyche, 100)) / 120, 0, 1),
+      buffDurationMultiplier: 1 + 0.18 * clamp((Psyche - 10) / 120, 0, 1),
+      effectiveOffense, effectiveResistance,
+      carryWeight: Math.max(1, 20 + 0.35 * (Strength + Constitution / 2 + 2 * heightPoints)),
+      armorWeight: Math.max(1, 5 + 0.12 * (Strength + Constitution / 2 + heightPoints)),
+      bookTrainingMultiplier: 1 + 0.25 * clamp(((Intelligence + Wisdom) / 2 - 10) / 120, 0, 1),
+      exertionSeconds: stamina / 12, exertionDrain: 12, parryDrain: 5, successfulParryReturn: 2,
+      turnSpeed: 360, exertedTurnSpeed: 540, recoveryDelay: 0.75, heightPoints,
+      weightPercent: weightProfile.weightPercent, weightHealthBonus: weightProfile.healthBonus,
+      // An unarmored full-charge example at effective Melee Combat 100; not a final weapon/armor simulation.
+      referenceSwordDamage: 42 * meleeMultiplier,
+      targetPsyche: finite(targetPsyche, 100)
+    };
+  }
+  function skillBonus(stats = {}, attributes = []) {
+    if (!Array.isArray(attributes) || attributes.length === 0) return 0;
+    const relevant = attributes.filter(stat => D.stats.includes(stat));
+    if (!relevant.length) return 0;
+    return Math.floor(relevant.reduce((sum, stat) => sum + finite(stats[stat], D.attributeFloor), 0) / (10 * relevant.length));
+  }
+  root.IronboundRules = { getProfile, getWeightProfile, attributeBreakdown, effectiveStats, account, normalizeBuild, allocatePreset, derive, skillBonus, interpolate, clamp, round, heightGrid };
+})(window);
+
+</script><script>
+/* Ironbound action-skill explorer. Canonical source: outputs/action-skills.yaml.
+   A planner preview: secondary learning and unlocked content are not live progression. */
+(function () {
+  "use strict";
+  const ROWS = [
+  {
+    "key": "melee",
+    "name": "Melee Combat",
+    "group": "Physical combat",
+    "type": "primary",
+    "status": "decided",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength"
+    ],
+    "parent": null,
+    "effect": "Shared proficiency for ordinary melee weapons; no per-family primary cost. Attribute mapping remains proposed."
+  },
+  {
+    "key": "swords",
+    "name": "Swords",
+    "group": "Physical combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength"
+    ],
+    "parent": "melee",
+    "effect": "Weapon-family training. Exact families are proposed; applicable weapon data selects the proficiency. No extra primary cost."
+  },
+  {
+    "key": "axes",
+    "name": "Axes",
+    "group": "Physical combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength"
+    ],
+    "parent": "melee",
+    "effect": "Weapon-family training. Exact families are proposed; applicable weapon data selects the proficiency. No extra primary cost."
+  },
+  {
+    "key": "blunt",
+    "name": "Blunt Weapons",
+    "group": "Physical combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength"
+    ],
+    "parent": "melee",
+    "effect": "Weapon-family training. Exact families are proposed; applicable weapon data selects the proficiency. No extra primary cost."
+  },
+  {
+    "key": "daggers",
+    "name": "Daggers",
+    "group": "Physical combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength"
+    ],
+    "parent": "melee",
+    "effect": "Weapon-family training. Exact families are proposed; applicable weapon data selects the proficiency. No extra primary cost."
+  },
+  {
+    "key": "polearms",
+    "name": "Spears and Polearms",
+    "group": "Physical combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength"
+    ],
+    "parent": "melee",
+    "effect": "Weapon-family training. Exact families are proposed; applicable weapon data selects the proficiency. No extra primary cost."
+  },
+  {
+    "key": "unarmed",
+    "name": "Unarmed Combat",
+    "group": "Physical combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength"
+    ],
+    "parent": "melee",
+    "effect": "Weapon-family training. Exact families are proposed; applicable weapon data selects the proficiency. No extra primary cost."
+  },
+  {
+    "key": "blocking",
+    "name": "Blocking",
+    "group": "Physical combat",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Dexterity"
+    ],
+    "parent": null,
+    "effect": "Improves correct directional parry mitigation under the settled Strength comparison. Small stamina return on success remains a combat rule, not another ability purchase."
+  },
+  {
+    "key": "lunging",
+    "name": "Lunging",
+    "group": "Physical combat",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Dexterity"
+    ],
+    "parent": null,
+    "effect": "Candidate offensive forward mobility for committed ordinary attacks; benefits reach control rather than generic damage. Not an active baseline feature."
+  },
+  {
+    "key": "armor",
+    "name": "Armor Training",
+    "group": "Physical combat",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Constitution"
+    ],
+    "parent": null,
+    "effect": "Supports armor carrying capacity within decided attribute and body rules; exact curve and equipment load thresholds open."
+  },
+  {
+    "key": "heavy_armor",
+    "name": "Heavy Armor Training",
+    "group": "Physical combat",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Constitution"
+    ],
+    "parent": "armor",
+    "effect": "Additional capacity/suitability for heaviest armor; distinct specialization without universal damage resistance bonus."
+  },
+  {
+    "key": "archery",
+    "name": "Archery",
+    "group": "Physical combat",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Dexterity"
+    ],
+    "parent": null,
+    "effect": "Bow proficiency; weapon Strength requirements remain. Aim is player controlled, not auto-targeted."
+  },
+  {
+    "key": "aiming",
+    "name": "Aiming Technique",
+    "group": "Physical combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Dexterity"
+    ],
+    "parent": "archery",
+    "effect": "Bounded steadiness and handling; no target lock, guaranteed hit or change to basic camera responsiveness."
+  },
+  {
+    "key": "athletics",
+    "name": "Athletics",
+    "group": "Movement",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Dexterity"
+    ],
+    "parent": null,
+    "effect": "Environmental traversal specialization; does not buy ordinary run speed or the universal Shift turn boost."
+  },
+  {
+    "key": "swimming",
+    "name": "Swimming",
+    "group": "Movement",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength"
+    ],
+    "parent": "athletics",
+    "effect": "Swimming proficiency; supports meaningful water traversal without forbidding a basic swim."
+  },
+  {
+    "key": "jumping",
+    "name": "Jumping and Landing",
+    "group": "Movement",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Dexterity"
+    ],
+    "parent": "athletics",
+    "effect": "Traversal and controlled landing; no combat bunny-hop damage bonus or elimination of severe fall danger."
+  },
+  {
+    "key": "diving",
+    "name": "Diving",
+    "group": "Movement",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Constitution"
+    ],
+    "parent": "swimming",
+    "effect": "Underwater endurance; exact interaction with equipment and breathing is open."
+  },
+  {
+    "key": "balance",
+    "name": "Balance",
+    "group": "Movement",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Dexterity",
+      "Constitution"
+    ],
+    "parent": "athletics",
+    "effect": "Resistance to supported displacement effects and landing instability; defer effects until those mechanics exist. No new crowd-control system implied."
+  },
+  {
+    "key": "conjuration",
+    "name": "Conjuration",
+    "group": "Magic",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Intelligence",
+      "Wisdom"
+    ],
+    "parent": null,
+    "effect": "Initial ordinary spell school: aimed offense, healing and its permitted utility. No separate healing/offense primary tax in this draft."
+  },
+  {
+    "key": "domination",
+    "name": "Domination",
+    "group": "Magic",
+    "type": "secondary",
+    "status": "decided",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Intelligence"
+    ],
+    "parent": "conjuration",
+    "effect": "Decided secondary classification; 5-second acquisition, capped by Taming. Rare-book/long-training gates and sentient exceptions stay in PET rules. Taming remains an external profession dependency."
+  },
+  {
+    "key": "necromancy",
+    "name": "Necromancy",
+    "group": "Magic",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Intelligence",
+      "Psyche"
+    ],
+    "parent": null,
+    "effect": "Necromantic spell proficiency. Criminal status, components, time and corpse construction follow the owning magic rules."
+  },
+  {
+    "key": "rituals",
+    "name": "Necromantic Rituals",
+    "group": "Magic",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Intelligence",
+      "Psyche"
+    ],
+    "parent": "necromancy",
+    "effect": "Ritual proficiency for existing corpse/backing rules. No separate action primary for preparatory corpse production; any profession classification is outside this pass."
+  },
+  {
+    "key": "mental_discipline",
+    "name": "Mental Discipline",
+    "group": "Magic",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Intelligence",
+      "Psyche"
+    ],
+    "parent": null,
+    "effect": "Combined bounded concentration and mana-regeneration specialization; does not add another spell damage or attribute-duration multiplier."
+  },
+  {
+    "key": "concentration",
+    "name": "Concentration",
+    "group": "Magic",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Psyche"
+    ],
+    "parent": "mental_discipline",
+    "effect": "Bounded casting interruption tolerance. Stronger attacks must retain useful interruption counterplay; no universal immunity."
+  },
+  {
+    "key": "meditation",
+    "name": "Meditation",
+    "group": "Magic",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Wisdom"
+    ],
+    "parent": "mental_discipline",
+    "effect": "Stationary recovery option; not an extra passive mana multiplier. Preserve maximum-mana-proportional regeneration."
+  },
+  {
+    "key": "first_aid",
+    "name": "First Aid",
+    "group": "Support",
+    "type": "primary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Dexterity",
+      "Wisdom"
+    ],
+    "parent": null,
+    "effect": "Use consumable bandages for recovery. Damage interruption and timing should prevent indefinite reset loops; no anatomical crafting/lore prerequisite."
+  },
+  {
+    "key": "veterinary",
+    "name": "Veterinary",
+    "group": "Support",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Wisdom"
+    ],
+    "parent": "first_aid",
+    "effect": "Apply relevant medical consumables to living companions; pet combat healing remains a tactical action."
+  },
+  {
+    "key": "potion_use",
+    "name": "Potion Use",
+    "group": "Support",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "not_applicable",
+    "attributes": [],
+    "parent": null,
+    "effect": "Basic consumable use available without a primary tax. If progression is retained, keep effects bounded; consumable cooldown and quality remain the principal limits."
+  },
+  {
+    "key": "riding",
+    "name": "Riding",
+    "group": "Mounted combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "not_applicable",
+    "attributes": [],
+    "parent": null,
+    "effect": "Basic riding available without a primary tax; ordinary mounts and comical eligible shoulder mounts follow pet/riding rules."
+  },
+  {
+    "key": "mounted_combat",
+    "name": "Mounted Combat",
+    "group": "Mounted combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Dexterity"
+    ],
+    "parent": "riding",
+    "effect": "Physical fighting from a mount; does not confer melee or archery proficiency itself."
+  },
+  {
+    "key": "mounted_melee",
+    "name": "Mounted Melee Technique",
+    "group": "Mounted combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Dexterity"
+    ],
+    "parent": "mounted_combat",
+    "effect": "Ordinary melee handling while riding; also uses the applicable melee proficiency."
+  },
+  {
+    "key": "mounted_archery",
+    "name": "Mounted Archery Technique",
+    "group": "Mounted combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Strength",
+      "Dexterity"
+    ],
+    "parent": "mounted_combat",
+    "effect": "Archery handling while riding; also uses Archery. No second primary per mounted weapon family."
+  },
+  {
+    "key": "mounted_casting",
+    "name": "Mounted Casting",
+    "group": "Mounted combat",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Intelligence",
+      "Psyche"
+    ],
+    "parent": "riding",
+    "effect": "Casting control while riding; school proficiency still required. Basic mounted penalties and mitigation need explicit bounded tuning."
+  },
+  {
+    "key": "creature_control",
+    "name": "Creature Control",
+    "group": "Companions",
+    "type": "primary",
+    "status": "decided",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Psyche"
+    ],
+    "parent": null,
+    "effect": "Decided primary; roughly first three quarters of control capacity. Attribute mapping proposed."
+  },
+  {
+    "key": "herding",
+    "name": "Herding",
+    "group": "Companions",
+    "type": "primary",
+    "status": "decided",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Psyche"
+    ],
+    "parent": "creature_control",
+    "effect": "Decided primary; last quarter of capacity and multiple-creature handling. Single carriage driver accounts for every harnessed animal."
+  },
+  {
+    "key": "beast_mastery",
+    "name": "Beast Mastery",
+    "group": "Companions",
+    "type": "primary",
+    "status": "decided",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Psyche"
+    ],
+    "parent": "herding",
+    "effect": "Decided primary; parent follows current DEF-PET-01. Proposed alternative parent is Creature Control; do not silently apply it."
+  },
+  {
+    "key": "creature_family",
+    "name": "Creature Family Handling",
+    "group": "Companions",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Psyche"
+    ],
+    "parent": "beast_mastery",
+    "effect": "Parameterized original creature-family proficiency, not a species primary tax. Concrete family catalog is authored with our fauna."
+  },
+  {
+    "key": "creature_abilities",
+    "name": "Creature Abilities",
+    "group": "Companions",
+    "type": "secondary",
+    "status": "proposed",
+    "attribute_mapping_status": "proposed",
+    "attributes": [
+      "Psyche"
+    ],
+    "parent": "creature_family",
+    "effect": "Parameterized ability training appropriate to the controlled creature. No imported named MO2 species required."
+  }
+];
+  const BY_KEY = Object.fromEntries(ROWS.map(row => [row.key, row]));
+  const GROUPS = [...new Set(ROWS.map(row => row.group))];
+  const ALIASES = {Strength:"STR", Dexterity:"DEX", Constitution:"CON", Intelligence:"INT", Wisdom:"WIS", Psyche:"PSY"};
+  const escape = value => String(value ?? "").replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const integer = (value, low, high) => Math.max(low, Math.min(high, Math.round(Number(value) || 0)));
+  const freshState = () => ({version:1, trained:{}, learned:{}, selected:"melee", candidateLunging:false, budget:null, externalTaming:0});
+  let instanceCount = 0;
+
+  function mount(container, options = {}) {
+    if (!container) throw new Error("A skill-tree container is required.");
+    const id = "ibskills-" + (++instanceCount);
+    let state = freshState();
+    let query = "";
+    let filter = "all";
+    const openGroups = new Set(GROUPS);
+    const openBranches = new Set(ROWS.filter(row => row.parent).map(row => row.parent));
+
+    function attribute(name) {
+      const attributes = options.getAttributes?.() || {};
+      const value = attributes[name] ?? attributes[name.toLowerCase()] ?? attributes[ALIASES[name]] ?? attributes[ALIASES[name].toLowerCase()];
+      return Math.max(0, Number(value) || 0);
+    }
+    function bonus(row) {
+      if (!row.attributes.length) return 0;
+      return Math.floor(row.attributes.reduce((sum, name) => sum + attribute(name), 0) / (10 * row.attributes.length));
+    }
+    function enabled(row) { return row.key !== "lunging" || state.candidateLunging; }
+    function values(row) {
+      const isEnabled = enabled(row);
+      const learned = isEnabled && !!state.learned[row.key];
+      const maximumBase = Math.max(0, 100 - bonus(row));
+      const requested = learned ? integer(state.trained[row.key], 0, 100) : 0;
+      const base = Math.min(requested, maximumBase);
+      const effective = learned ? Math.min(100, base + bonus(row)) : 0;
+      return {
+        requested, base, cappedTraining:requested - base, bonus: bonus(row), effective, learned, enabled:isEnabled,
+        usable: row.key === "domination" ? Math.min(effective, state.externalTaming) : effective,
+        primaryCost: row.type === "primary" ? base : 0,
+        maximumBase
+      };
+    }
+    function normalize() {
+      if (!BY_KEY[state.selected]) state.selected = "melee";
+      state.externalTaming = integer(state.externalTaming, 0, 100);
+      if (state.budget !== null) state.budget = integer(state.budget, 0, 10000);
+      ROWS.forEach(row => {
+        if (!enabled(row) || !state.learned[row.key]) {
+          state.trained[row.key] = 0;
+          if (!enabled(row)) state.learned[row.key] = false;
+        } else state.trained[row.key] = integer(state.trained[row.key], 0, 100);
+      });
+    }
+    function getSummary() {
+      const entries = Object.fromEntries(ROWS.map(row => [row.key, values(row)]));
+      const primarySpent = ROWS.reduce((sum, row) => sum + entries[row.key].primaryCost, 0);
+      return {
+        primarySpent,
+        secondaryTraining:ROWS.filter(row => row.type === "secondary").reduce((sum, row) => sum + entries[row.key].base, 0),
+        attributeSavings:ROWS.filter(row => row.type === "primary" && entries[row.key].learned).reduce((sum, row) => sum + Math.min(100, entries[row.key].bonus), 0),
+        learnedCount:ROWS.filter(row => entries[row.key].learned).length,
+        budget:state.budget,
+        remaining:state.budget === null ? null : state.budget - primarySpent,
+        overBudget:state.budget !== null && primarySpent > state.budget,
+        skills:entries
+      };
+    }
+    function notify() { options.onChange?.(getSummary()); }
+    function nodeMarkup(row, visible) {
+      if (!visible.has(row.key)) return "";
+      const children = ROWS.filter(child => child.parent === row.key && visible.has(child.key));
+      const value = values(row);
+      const contextOnly = !matches(row);
+      return '<li class="skills-node' + (contextOnly ? ' skills-context' : '') + '">' +
+        '<div class="skills-node-row">' +
+          (children.length ? '<button type="button" class="skills-branch-toggle" data-branch="' + row.key + '" aria-expanded="' + (openBranches.has(row.key) || !!query || filter !== "all") + '" aria-label="Toggle ' + escape(row.name) + ' branch">' + ((openBranches.has(row.key) || !!query || filter !== "all") ? '−' : '+') + '</button>' : '<span class="skills-branch-spacer" aria-hidden="true"></span>') +
+          '<button type="button" class="skills-node-button' + (state.selected === row.key ? ' is-selected' : '') + '" data-skill="' + row.key + '" aria-pressed="' + (state.selected === row.key) + '">' +
+            '<span class="skills-node-copy"><span class="skills-node-name">' + escape(row.name) + '</span>' +
+              '<span class="skills-node-meta">' + (row.type === "primary" ? 'PRIMARY' : 'SECONDARY') + ' <span aria-hidden="true">·</span> ' + (row.key === "lunging" ? 'CANDIDATE' : escape(row.status).toUpperCase()) + '</span></span>' +
+            '<span class="skills-node-value" data-value="' + row.key + '">' + (value.learned ? value.effective : '—') + '</span>' +
+          '</button>' +
+        '</div>' +
+        (children.length ? '<ul class="skills-children"' + (!(openBranches.has(row.key) || !!query || filter !== "all") ? ' hidden' : '') + '>' + children.map(child => nodeMarkup(child, visible)).join("") + '</ul>' : '') +
+      '</li>';
+    }
+    function matches(row) {
+      const search = (row.name + " " + row.group + " " + row.attributes.join(" ") + " " + row.effect).toLowerCase();
+      const statusMatch = filter === "all" || (filter === "learned" ? values(row).learned : filter === row.status || filter === row.type);
+      return statusMatch && (!query || search.includes(query));
+    }
+    function renderTree() {
+      const visible = new Set();
+      ROWS.filter(matches).forEach(row => {
+        let current = row;
+        while (current) { visible.add(current.key); current = BY_KEY[current.parent]; }
+      });
+      const markup = GROUPS.map(group => {
+        const rows = ROWS.filter(row => row.group === group && visible.has(row.key));
+        if (!rows.length) return "";
+        const isOpen = openGroups.has(group) || !!query || filter !== "all";
+        return '<section class="skills-group"><button type="button" class="skills-group-toggle" data-group="' + escape(group) + '" aria-expanded="' + isOpen + '">' +
+          '<span>' + escape(group) + '</span><span class="skills-group-count">' + rows.length + ' <span aria-hidden="true">' + (isOpen ? '−' : '+') + '</span></span></button>' +
+          '<ul class="skills-roots"' + (isOpen ? '' : ' hidden') + '>' + rows.filter(row => !row.parent).map(row => nodeMarkup(row, visible)).join("") + '</ul></section>';
+      }).join("");
+      container.querySelector(".skills-tree").innerHTML = markup || '<p class="skills-empty">No skills match. Try a different search or filter.</p>';
+      container.querySelector("[data-match-count]").textContent = ROWS.filter(matches).length + " of " + ROWS.length + " skills";
+    }
+    function parentPath(row) {
+      const parents = [];
+      let parent = BY_KEY[row.parent];
+      while (parent) { parents.unshift(parent.name); parent = BY_KEY[parent.parent]; }
+      return parents.length ? parents.join(" → ") : "No parent skill";
+    }
+    function trainingNote(row, value) {
+      if (!value.learned) return 'Unlock this skill or select training to include it in the preview.';
+      const capNote = value.cappedTraining > 0
+        ? value.cappedTraining + ' selected points are currently above the effective ceiling and do not contribute or cost primary points. '
+        : '';
+      return value.requested + ' selected; ' + value.base + ' active training + ' + value.bonus + ' attribute bonus. ' + capNote +
+        (row.type === 'primary'
+          ? 'Selections survive attribute changes. A smaller bonus can raise the primary cost again.'
+          : 'Selections survive attribute changes. Secondary training has no primary point cost.');
+    }
+    function renderDetail() {
+      const row = BY_KEY[state.selected];
+      const value = values(row);
+      const attrText = row.attributes.length ? row.attributes.map(name => ALIASES[name]).join(" + ") : "No attribute mapping";
+      const formula = row.attributes.length === 2 ? "floor((" + row.attributes.map(name => ALIASES[name]).join(" + ") + ") ÷ 20)" : row.attributes.length === 1 ? "floor(" + ALIASES[row.attributes[0]] + " ÷ 10)" : "0";
+      container.querySelector(".skills-detail").innerHTML =
+        '<div class="skills-detail-eyebrow">' + escape(row.group) + ' <span> / ' + escape(row.status) + '</span></div>' +
+        '<h3>' + escape(row.name) + '</h3>' +
+        '<div class="skills-detail-tags"><span class="skills-chip">' + (row.type === "primary" ? 'Uses action points' : 'Free of primary cost') + '</span><span class="skills-chip">' + escape(attrText) + '</span></div>' +
+        '<p class="skills-effect">' + escape(row.effect) + '</p>' +
+        '<div class="skills-parent"><span>Dependency path</span><strong>' + escape(parentPath(row)) + '</strong></div>' +
+        (row.parent ? '<p class="skills-note">The link is a dependency, not a requirement to max its parent. Learning thresholds are not fixed or enforced in this preview.</p>' : '') +
+        (row.key === "lunging" ? '<label class="skills-check skills-candidate"><input type="checkbox" data-candidate' + (state.candidateLunging ? ' checked' : '') + '> Include candidate Lunging in this preview</label><p class="skills-note">Optional experiment. Lunging is not an approved baseline feature.</p>' : '') +
+        '<label class="skills-check"><input type="checkbox" data-learned' + (value.learned ? ' checked' : '') + (value.enabled ? '' : ' disabled') + '> Learned / unlocked for this preview</label>' +
+        '<div class="skills-effective-box"><span>Effective proficiency</span><strong><span data-effective>' + value.effective + '</span><small> / 100</small></strong><div class="skills-progress"><span data-effective-bar style="width:' + value.effective + '%"></span></div></div>' +
+        '<label class="skills-training-label" for="' + id + '-training">Selected training points<output data-base>' + value.requested + '</output></label>' +
+        '<input id="' + id + '-training" class="skills-range" type="range" min="0" max="100" step="1" value="' + value.requested + '" data-training aria-label="' + escape(row.name) + ' selected training points"' + (value.enabled ? '' : ' disabled') + '>' +
+        '<div class="skills-edit-row"><input class="skills-number" type="number" min="0" max="100" step="1" value="' + value.requested + '" data-training-number aria-label="' + escape(row.name) + ' selected training points number"' + (value.enabled ? '' : ' disabled') + '><button type="button" class="skills-small-button" data-max' + (value.enabled ? '' : ' disabled') + '>Use current ceiling</button><button type="button" class="skills-small-button" data-clear>Clear</button></div>' +
+        '<p class="skills-note" data-training-note>' + escape(trainingNote(row, value)) + '</p>' +
+        '<dl class="skills-detail-totals"><div><dt>Attribute bonus</dt><dd>+<span data-bonus>' + value.bonus + '</span></dd></div><div><dt>Primary cost</dt><dd data-cost>' + value.primaryCost + '</dd></div></dl>' +
+        '<p class="skills-note">Proposed bonus: ' + escape(formula) + '. Training + attribute bonus is capped at 100. Attribute bonuses do not unlock an unlearned skill. No lineage skill gifts are assigned.</p>' +
+        (row.type === "secondary" ? '<p class="skills-note">Secondary learning can require books, practice and time, but consumes no primary action points.</p>' : '') +
+        (row.key === "domination" ? '<div class="skills-external"><label for="' + id + '-taming">External Taming proficiency</label><input id="' + id + '-taming" class="skills-range" type="range" min="0" max="100" value="' + state.externalTaming + '" data-taming><div class="skills-taming-numbers"><span>Taming: <strong data-taming-value>' + state.externalTaming + '</strong></span><span>Usable Domination: <strong data-domination>' + value.usable + '</strong></span></div><p class="skills-note">Taming is a profession, outside this tree. Domination use is min(Domination, Taming); rare-book and learning gates still apply.</p></div>' : '');
+    }
+    function updateNumbers() {
+      const summary = getSummary();
+      container.querySelector("[data-primary-total]").textContent = summary.primarySpent;
+      container.querySelector("[data-secondary-total]").textContent = summary.secondaryTraining;
+      container.querySelector("[data-bonus-total]").textContent = summary.attributeSavings;
+      container.querySelector("[data-learned-total]").textContent = summary.learnedCount;
+      const budgetNote = container.querySelector("[data-budget-note]");
+      budgetNote.textContent = summary.budget === null ? "Action budget is not fixed. Enter a comparison limit to explore trade-offs." :
+        (summary.remaining < 0 ? Math.abs(summary.remaining) + " above your comparison limit. Your training selections are kept; lower selected training or revise the limit." : summary.remaining + " points remaining against your comparison limit. Attribute changes can change the active cost.");
+      budgetNote.classList.toggle("skills-over", summary.overBudget);
+      container.querySelector("[data-budget]").value = state.budget === null ? "" : state.budget;
+      ROWS.forEach(row => {
+        const el = container.querySelector('[data-value="' + row.key + '"]');
+        const value = summary.skills[row.key];
+        if (el) { el.textContent = value.learned ? value.effective : "—"; el.classList.toggle("is-learned", value.learned); }
+      });
+      const value = summary.skills[state.selected];
+      const detail = container.querySelector(".skills-detail");
+      detail.querySelector("[data-effective]").textContent = value.effective;
+      detail.querySelector("[data-effective-bar]").style.width = value.effective + "%";
+      detail.querySelector("[data-base]").textContent = value.requested;
+      detail.querySelector("[data-training-note]").textContent = trainingNote(BY_KEY[state.selected], value);
+      detail.querySelector("[data-bonus]").textContent = value.bonus;
+      detail.querySelector("[data-cost]").textContent = value.primaryCost;
+      ["[data-training]", "[data-training-number]"].forEach(selector => {
+        const input = detail.querySelector(selector);
+        input.max = 100; input.value = value.requested; input.disabled = !value.enabled;
+      });
+      detail.querySelector("[data-learned]").checked = value.learned;
+      detail.querySelector("[data-learned]").disabled = !value.enabled;
+      detail.querySelector("[data-max]").disabled = !value.enabled;
+      if (state.selected === "domination") {
+        detail.querySelector("[data-taming-value]").textContent = state.externalTaming;
+        detail.querySelector("[data-domination]").textContent = value.usable;
+        detail.querySelector("[data-taming]").value = state.externalTaming;
+      }
+    }
+    function renderAll() {
+      renderTree(); renderDetail(); updateNumbers();
+    }
+    container.classList.add("skills-explorer");
+    container.innerHTML =
+      '<header class="skills-intro"><div><span class="skills-kicker">ACTION PROFICIENCIES</span><h2>Build your discipline.</h2><p>One melee investment. Free weapon-family and mounted secondaries. Separate choices for magic, defense and companions.</p></div><span class="skills-preview-label">Design preview</span></header>' +
+      '<div class="skills-summary"><div><span>Active primary cost</span><strong data-primary-total>0</strong></div><div><span>Active secondary training</span><strong data-secondary-total>0</strong></div><div><span>Primary attribute bonus</span><strong data-bonus-total>0</strong></div><div><span>Learned skills</span><strong data-learned-total>0</strong></div></div>' +
+      '<div class="skills-budget-row"><label>Optional comparison budget <input class="skills-number" type="number" min="0" max="10000" step="1" placeholder="Unfixed" data-budget></label><p data-budget-note></p></div>' +
+      '<div class="skills-workspace"><div class="skills-browser"><div class="skills-filters"><label class="skills-search-label"><span class="skills-sr-only">Search action skills</span><input type="search" placeholder="Find a skill, effect or attribute…" data-search></label><label><span class="skills-sr-only">Filter skills</span><select data-filter><option value="all">All skills</option><option value="primary">Primaries</option><option value="secondary">Secondaries</option><option value="decided">Decided</option><option value="proposed">Proposed</option><option value="learned">Learned</option></select></label></div><div class="skills-tree-toolbar"><span data-match-count></span><button type="button" class="skills-text-button" data-expand>Expand all</button></div><div class="skills-tree"></div></div><aside class="skills-detail" aria-label="Selected skill details"></aside></div>' +
+      '<footer class="skills-footer">This is the drafted action tree, not a claim that every branch is implemented in Unreal. Numbers preview training allocation; skill effect curves, prerequisites and the total action budget remain open. Detailed combat outputs elsewhere use attributes and body values only.</footer>';
+
+    container.addEventListener("click", event => {
+      const button = event.target.closest("button");
+      if (!button || !container.contains(button)) return;
+      if (button.dataset.skill) {
+        state.selected = button.dataset.skill; renderAll(); notify();
+      } else if (button.hasAttribute("data-group")) {
+        const group = button.dataset.group; openGroups.has(group) ? openGroups.delete(group) : openGroups.add(group); renderTree();
+      } else if (button.dataset.branch) {
+        const branch = button.dataset.branch; openBranches.has(branch) ? openBranches.delete(branch) : openBranches.add(branch); renderTree();
+      } else if (button.hasAttribute("data-expand")) {
+        GROUPS.forEach(group => openGroups.add(group)); ROWS.filter(row => row.parent).forEach(row => openBranches.add(row.parent)); renderTree();
+      } else if (button.hasAttribute("data-max")) {
+        if (!enabled(BY_KEY[state.selected])) return;
+        state.learned[state.selected] = true; state.trained[state.selected] = values(BY_KEY[state.selected]).maximumBase; updateNumbers(); if (filter === "learned") renderTree(); notify();
+      } else if (button.hasAttribute("data-clear")) {
+        state.learned[state.selected] = false; state.trained[state.selected] = 0; updateNumbers(); if (filter === "learned") renderTree(); notify();
+      }
+    });
+    container.addEventListener("input", event => {
+      const input = event.target;
+      if (input.hasAttribute("data-search")) { query = input.value.trim().toLowerCase(); renderTree(); return; }
+      if (input.hasAttribute("data-training") || input.hasAttribute("data-training-number")) {
+        if (!enabled(BY_KEY[state.selected])) return;
+        state.learned[state.selected] = true;
+        state.trained[state.selected] = integer(input.value, 0, 100);
+        updateNumbers(); if (filter === "learned") renderTree(); notify();
+      } else if (input.hasAttribute("data-taming")) {
+        state.externalTaming = integer(input.value, 0, 100); updateNumbers(); notify();
+      } else if (input.hasAttribute("data-budget")) {
+        state.budget = input.value === "" ? null : integer(input.value, 0, 10000); updateNumbers(); notify();
+      }
+    });
+    container.addEventListener("change", event => {
+      const input = event.target;
+      if (input.hasAttribute("data-filter")) { filter = input.value; renderTree(); }
+      else if (input.hasAttribute("data-learned")) {
+        state.learned[state.selected] = input.checked; normalize(); updateNumbers(); if (filter === "learned") renderTree(); notify();
+      } else if (input.hasAttribute("data-candidate")) {
+        state.candidateLunging = input.checked; normalize(); renderAll(); notify();
+      }
+    });
+    renderAll();
+    return {
+      refresh() { normalize(); renderAll(); },
+      getState() { return JSON.parse(JSON.stringify(state)); },
+      setState(next) {
+        const safe = next && typeof next === "object" ? next : {};
+        state = freshState();
+        state.selected = BY_KEY[safe.selected] ? safe.selected : "melee";
+        state.candidateLunging = safe.candidateLunging === true;
+        state.externalTaming = integer(safe.externalTaming, 0, 100);
+        state.budget = safe.budget === null || safe.budget === undefined || safe.budget === "" ? null : integer(safe.budget, 0, 10000);
+        ROWS.forEach(row => {
+          state.learned[row.key] = safe.learned?.[row.key] === true;
+          state.trained[row.key] = integer(safe.trained?.[row.key], 0, 100);
+        });
+        normalize(); renderAll();
+      },
+      reset() { state = freshState(); query = ""; filter = "all"; container.querySelector("[data-search]").value = ""; container.querySelector("[data-filter]").value = "all"; renderAll(); },
+      getSummary
+    };
+  }
+  window.IronboundSkills = {mount, rows:ROWS.map(row => ({...row, attributes:[...row.attributes]}))};
+})();
+
+
+</script><script>
+(function () {
+  'use strict';
+
+  // Public-facing summaries of peoples, geography, LAW-01–14 and TOWN-01–06.
+  // The foreign-entry thresholds and category mapping are DEF-LAW-08 defaults.
+  const origins = {
+    Dommer: {
+      home: 'Dom · Dominion',
+      text: 'The Dominion stretches through dry grasslands, Mediterranean country and cold, rain-soaked forests. The Dommer once refused an alliance with the Keldren; later, their pact with the Hladan helped break Nubian imperial power and restore Wuri sovereignty.'
+    },
+    Hladan: {
+      home: 'Hemland · the cold north',
+      text: 'From cold, wet country around Hemland, Kaldung and Fjordsted, the Hladan live closest to the Dommer. Their old alliance reshaped human politics. Farther into the northern mountains lie the snowy homelands of the Friode dwarves.'
+    },
+    Nubian: {
+      home: 'Nepata · Kingdom of Kush',
+      text: 'Nepata, Kerma and Meroe anchor a kingdom of northern savannah and desert margins. The Nubians once joined the Keldren in the second-greatest imperial alliance the world has known. Today, that distant empire has given way to a more uncertain balance of powers.'
+    },
+    Wuri: {
+      home: 'Wurian · Wurian Empire',
+      text: 'The Wuri inhabit warm, wet jungles that give way to savannah and desert toward Nubia. Their capital is Wurian. Once drawn into the Nubian imperial order, they regained sovereignty during the rebellions that reshaped the human realms.'
+    },
+    Yurtan: {
+      home: 'Merv · the steppe and forest frontier',
+      text: 'More nomadic than their neighbors, the Yurtan range across steppes, forests and cold mountain edges between Dommer country and the Mashi frontier. Merv is their largest city. Elaborate guarded stops, vendors, farms and cattle make travel part of everyday life.'
+    },
+    Mashi: {
+      home: 'Guojing · Mashan Empire',
+      text: 'The old city of Mashi crowds between mountains and sea. Later settlements grew into Guojing, the administrative capital, and lively Gohyang, its fishing sister town. Their people spread toward the steppes; distant roads still break and resume across open country.'
+    },
+    Keldren: {
+      home: 'Grand cities of the elven peninsula',
+      text: 'Across the water from Nubian and Dommer shores stand the ordered cities of the Keldren. Their pact with the Nubians once sustained an immense imperial order. They remain a people of grand architecture and disciplined society, among elven neighbors now sovereign in their own right.'
+    },
+    Sairen: {
+      home: 'Forests, jungles and mushroom groves',
+      text: 'The Sairen build impressive cities within the elven forests and embrace technology alongside woodland life. They are shorter and longer-lived than the Keldren. Their sovereignty emerged as the old elven imperial order weakened; dense forests remain their familiar country.'
+    },
+    Verathi: {
+      home: 'Shallow cavern cities of the elven lands',
+      text: 'The Verathi favor cave cities close to the surface, far above the depths of the Iwaman. Their complexions range from pale peach through ash gray to black. Like the Sairen, they emerged as a sovereign people from the shadow of Keldren rule.'
+    },
+    Khazad: {
+      home: 'Khazad Empire · mountains along Yurtan lands',
+      text: 'Short, brown-haired and the most surface-oriented dwarves, the Khazad inhabit temperate mountains with cold seasons rather than endless snow. Their exposed settlements suffered the worst dwarf losses in the ancient Colossi conquests. Deep routes still connect them to the other dwarf peoples.'
+    },
+    Friode: {
+      home: 'Frioden · northern mountains near Hladan',
+      text: 'White-haired and exceptionally shaggy, the Friode are adapted to the northern cold. Their mountain country lies near the Hladan, along the snowy extension of the dwarf ranges. They endured the Colossi era with fewer losses than the more exposed Khazad.'
+    },
+    Iwaman: {
+      home: 'The deep world beneath Mashi',
+      text: 'Dark teal-gray Iwaman live so far below the Mashi that the surface people scarcely know they are there. Long tunnels reach the other dwarf realms. Their rare surface journeys use Khazad and Friode exits; in the deepest settlements, Colossi devastation survives chiefly as distant tales.'
+    },
+    Titans: {
+      home: 'The central Orc continent',
+      text: 'Green and brown-green Titans hold broad lands of dry, living wasteland, dark stone and central volcanoes. Their reach looks vast, yet the far stronger Colossi retain decisive power from a small enclave. Beyond Orc lands, a Titan enters a world whose laws treat them as an unprotected foreigner.'
+    }
+  };
+
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+
+  function renderOrigin(container, profile) {
+    if (!container || !profile) return;
+    const ancestry = Array.isArray(profile.ancestry) && profile.ancestry.length
+      ? profile.ancestry
+      : [{ lineage: profile.lineage, percent: 100 }];
+    const mixed = ancestry.length > 1;
+    const introduction = profile.isGiantkin
+      ? '<p class="world-origin-intro">Giantkin carry human and Titan ancestry. No blend grants them homeland recognition, but earned standing can still open a town’s gates. Their ordinary legal affiliation is Blue in the current design default.</p>'
+      : mixed
+        ? '<p class="world-origin-intro">Two ancestral traditions shape this character. These are their peoples’ homelands; ancestry does not dictate where an individual must live.</p>'
+        : '';
+    const stories = ancestry.map(entry => {
+      const origin = origins[entry.lineage];
+      if (!origin) return '';
+      return `<article class="world-origin-story"><div class="world-origin-title">${mixed ? `<strong>${esc(entry.lineage)}</strong><span>${esc(entry.percent)}%</span>` : '<span class="eyebrow">Homeland &amp; history</span>'}</div><p class="world-origin-home">${esc(origin.home)}</p><p>${esc(origin.text)}</p></article>`;
+    }).join('');
+    container.classList.add('world-origin');
+    container.innerHTML = introduction + stories;
+  }
+
+  function mountLaw(container) {
+    if (!container) return;
+    container.classList.add('world-law');
+    container.innerHTML = `
+      <div class="build-topline"><div><div class="eyebrow">Belonging, reputation &amp; risk</div><h1>Law across the border</h1><p class="muted">Orc and non-Orc societies mirror each other’s treatment of outsiders.</p></div></div>
+      <section class="panel law-principle"><h2>Being allowed inside does not mean being protected.</h2><p>A Titan can earn the standing to enter a civilized city, yet remain a lawful target for its players. A Blue visitor faces the same treatment in Orc territory. Standing opens gates; it does not change affiliation or erase murder notoriety.</p></section>
+      <section class="panel law-explorer" aria-labelledby="law-explorer-title">
+        <div class="section-heading"><h2 id="law-explorer-title">Try a border crossing</h2><span class="tag demo">Standard town preview</span></div>
+        <p class="hint">Explore a normal guarded town in a jurisdiction that permits murder reports. Red-tolerant towns and occupied camps have different guard policies.</p>
+        <div class="law-controls">
+          <label class="field">Where are you?<select data-law="territory"><option value="civilized">Civilized territory · Blue</option><option value="orc">Orc territory · Purple</option></select></label>
+          <label class="field">Ordinary affiliation<select data-law="affiliation"><option value="purple">Orc / Titan · Purple</option><option value="blue">Non-Orc · Blue</option></select></label>
+          <div class="law-flags"><label class="check-line"><input data-law="red" type="checkbox"> Reported murderer · Red</label><label class="check-line"><input data-law="criminal" type="checkbox"> Temporary criminal · Dark Grey</label></div>
+        </div>
+        <label class="slider-label" for="law-standing"><span>Local faction standing</span><output data-law="standing-value" for="law-standing">200 / 1,000</output></label>
+        <input id="law-standing" data-law="standing" type="range" min="0" max="1000" step="10" value="200">
+        <div class="range-labels"><span>Hostile reputation</span><span>Exceptional standing</span></div>
+        <div data-law="result" class="law-results" aria-live="polite" aria-atomic="true"></div>
+        <p class="hint law-default-note"><span class="tag demo">AI default</span> This preview uses 100 standing for lawful local affiliates and 900 for Reds or opposing-affiliation visitors. The visitor threshold and the mapping of Giantkin to Blue are revisable defaults. Standing alone does not decide whether an attack is lawful.</p>
+      </section>
+      <div class="law-detail-grid">
+        <section class="panel law-colors"><h2>Read the colors</h2><p class="hint">These describe separate legal states. Red and Dark Grey do not erase a character’s underlying Blue or Purple affiliation.</p>
+          <dl>
+            <div><dt><span class="law-dot blue"></span>Blue</dt><dd>Ordinary non-Orc affiliation. Locally protected in civilized territory when standing and flags allow; an unprotected visitor in Orc territory.</dd></div>
+            <div><dt><span class="law-dot purple"></span>Purple</dt><dd>Ordinary Orc affiliation. Locally protected in Orc territory when standing and flags allow; an unprotected visitor in civilized territory.</dd></div>
+            <div><dt><span class="law-dot red"></span>Red</dt><dd>Reported-murder notoriety. No guard protection against permitted attacks. Orcs can become Red through unlawful killings of protected Orcs.</dd></div>
+            <div><dt><span class="law-dot dark"></span>Dark Grey</dt><dd>Temporary criminality, such as stealing protected goods or attacking a protected person. Guards are hostile regardless of otherwise sufficient standing.</dd></div>
+            <div><dt><span class="law-dot light"></span>Local Light Grey</dt><dd>A permission between specific players: an attacked Red or unprotected visitor may retaliate against that attacker. It never spreads through healing or support.</dd></div>
+          </dl>
+        </section>
+        <section class="panel law-explainer"><h2>What happens in a fight?</h2>
+          <p>Attacking an eligible Red or opposing-affiliation visitor is lawful in that jurisdiction. The victim may fight back against that attacker. Neither action alone creates Dark Grey or a murder count.</p>
+          <p>Healing a Red in that engagement costs faction standing, but grants the healer no right to join the fight. Enough standing loss can bring the guards down on the helper.</p>
+          <h3>Reports belong to the incident</h3>
+          <p>A non-Orc cannot report their own killing in Orc territory, even with excellent standing. Protected Orc victims there can report unlawful killers, including other Orcs. Civilized territory allows eligible reports for its locally protected victims.</p>
+          <p>Guards automatically report witnessed <em>eligible</em> murders. Outside their view, victims can select eligible attackers and their relevant supporters to report at a priest. Guard witnesses cannot turn a lawful killing into murder.</p>
+          <details><summary>Counts &amp; reporting windows</summary><p>A qualifying reported player death adds a murder count; an eligible mount death adds 0.5. A reported incident starts or refreshes 12 hours of Red. At 10 counts, persistent Red remains until the count falls to 5; a still-active temporary Red timer also has to end. Counts decay by one per 12 hours.</p><p>Damage links an offender to a death for five minutes, including a later PvE death. That is not the deadline for reaching a priest. Mount owners have one hour to report an eligible mount death. Prior incidents keep their own eligibility when a character’s current status changes.</p></details>
+        </section>
+      </div>
+      <section class="panel law-footnote"><h2>Ancestry, allegiance and shelter</h2><div class="law-footnote-grid">
+        <div><h3>Recognition is inherited</h3><p>At least 75% of a qualifying lineage grants homeland recognition. Giantkin never receive it, even at 75% Titan. This changes standing advantages and crime penalties; it does not automatically make anyone Purple or Red. Questing can still improve standing.</p></div>
+        <div><h3>Towns are not identical</h3><p>Major cities use overwhelming guard strength. Red-tolerant towns primarily enforce Dark Grey crimes. Small camps can lose their guards while vendors keep working. Guarded refuges provide dependable shelter; the routes between them remain dangerous.</p></div>
+        <div><h3>Security has boundaries</h3><p>A lawful visitor can be welcome at one gate and vulnerable at another. Read the jurisdiction as you cross it. A reportable region is not a promise that guards can physically save you everywhere inside it.</p></div>
+      </div></section>`;
+
+    const field = name => container.querySelector(`[data-law="${name}"]`);
+    const update = () => {
+      const territory = field('territory').value;
+      const affiliation = field('affiliation').value;
+      const red = field('red').checked;
+      const criminal = field('criminal').checked;
+      const standing = Number(field('standing').value);
+      const foreign = (territory === 'orc') !== (affiliation === 'purple');
+      const threshold = red || foreign ? 900 : 100;
+      const hostile = criminal || standing < threshold;
+      const protection = !foreign && !red && !criminal && !hostile;
+      field('standing-value').textContent = `${standing.toLocaleString()} / 1,000`;
+      const gate = criminal
+        ? 'Dark Grey makes guards hostile, even at maximum standing.'
+        : standing < threshold
+          ? `Your ${standing} standing is below the ${threshold} entry threshold in this preview.`
+          : `Your standing meets the ${threshold} entry threshold. This does not authorize crimes.`;
+      const safety = red || foreign
+        ? 'Players may lawfully attack you here. You may retaliate against your attacker; standing does not grant protection.'
+        : protection
+          ? 'You qualify for ordinary local guard protection against unlawful attacks.'
+          : 'Your current flags or standing prevent ordinary guard protection. Guard hostility and player attack permission are separate questions.';
+      let reportTitle, report;
+      if (territory === 'orc' && affiliation === 'blue') {
+        reportTitle = 'No report of your own killing';
+        report = 'Non-Orcs cannot report their killing in Orc territory, regardless of their standing or the killer’s affiliation.';
+      } else if (red || foreign) {
+        reportTitle = 'Lawful attacks are not murder';
+        report = 'Your current unprotected status permits attacks here. A guard witnessing such a death does not make it reportable.';
+      } else if (protection) {
+        reportTitle = 'Eligible murders can be reported';
+        report = 'An unlawful killing of you can qualify for reporting here. Guard witnesses automatically report eligible participants.';
+      } else {
+        reportTitle = 'Incident-time protection matters';
+        report = 'A new murder report requires an eligible unlawful attack. The circumstances at that incident matter; earlier pending reports are not erased by this preview’s current flags.';
+      }
+      field('result').innerHTML = `
+        <article class="law-result ${hostile ? 'law-danger' : 'law-safe'}"><span class="eyebrow">01 · Gate access</span><h3>${hostile ? 'Guards are hostile' : 'Guards permit entry'}</h3><p>${esc(gate)}</p></article>
+        <article class="law-result ${protection ? 'law-safe' : 'law-warning'}"><span class="eyebrow">02 · Player protection</span><h3>${protection ? 'Ordinary local protection' : 'No ordinary guard protection'}</h3><p>${esc(safety)}</p></article>
+        <article class="law-result law-neutral"><span class="eyebrow">03 · Murder reporting</span><h3>${esc(reportTitle)}</h3><p>${esc(report)}</p><p class="law-incident-note">Existing reports retain their incident-time rules.</p></article>`;
+    };
+    ['territory', 'affiliation', 'red', 'criminal'].forEach(name => field(name).addEventListener('change', update));
+    field('standing').addEventListener('input', update);
+    update();
+    return { refresh: update };
+  }
+
+  window.IronboundWorld = Object.freeze({ renderOrigin, mountLaw });
+}());
+
+</script><script>
+(function () {
+  'use strict';
+  const D = window.IronboundData, R = window.IronboundRules;
+  const $ = id => document.getElementById(id);
+  const esc = text => String(text ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+  const finite = (value, fallback) => Number.isFinite(Number(value)) ? Number(value) : fallback;
+  const fmt = (value, digits = 1) => Number.isFinite(Number(value)) ? Number(value).toLocaleString('en-US', {maximumFractionDigits:digits}) : '—';
+  const lineageNames = Object.keys(D.lineages).filter(key => D.lineages[key].playable !== false);
+  const familyOf = key => {
+    if (key === 'Giantkin') return 'Giantkin';
+    const cat = String(D.lineages[key]?.category || '').toLowerCase();
+    return cat.includes('human') ? 'Human' : cat.includes('elf') || cat.includes('elven') ? 'Elf' : cat.includes('dwarf') || cat.includes('dwarv') ? 'Dwarf' : 'Orc';
+  };
+  const descriptions = {
+    Dommer:'Broad potential and a generous allocation pool. A flexible starting point for a weapon-and-magic hybrid.',
+    Hladan:'A tall physical profile with strong Strength and Constitution potential.',
+    Nubian:'A versatile human profile with useful Dexterity and balanced mental potential.',
+    Wuri:'High Dexterity and Psyche potential support mobile, resilient builds.',
+    Yurtan:'A broad allocation pool and balanced potential support several kinds of hybrid.',
+    Mashi:'Dexterity and Intelligence stand out in a compact, adaptable human profile.',
+    Keldren:'The strongest elven frame, exceptional Wisdom and limited Intelligence potential.',
+    Sairen:'Agile, capable spellcasters with high Dexterity and Intelligence potential.',
+    Verathi:'The highest Dexterity ceiling, with room for physical or magical specialization.',
+    Khazad:'High Strength, Constitution and Psyche potential in a shorter frame.',
+    Friode:'Strong, durable and capable of high Intelligence, with a tighter allocation pool.',
+    Iwaman:'A very short profile with high mental potential and Constitution.',
+    Titans:'The strongest playable pure lineage. Height and physical power compete with a smaller allocation pool.',
+    Giantkin:'A Titan–human blend. Ancestry changes potential, but Giantkin never gain homeland recognition.'
+  };
+  const attributeDescriptions = {
+    Strength:'Melee force, weapon requirements, carrying capacity and part of stamina.',
+    Dexterity:'Movement, weakspot potential and part of stamina.',
+    Constitution:'Health, stamina and physical carrying capacity.',
+    Intelligence:'Spell offense, casting speed, mana and book learning.',
+    Wisdom:'Shared offense and resistance; 18% more mana per point.',
+    Psyche:'Spell resistance, mana and eligible spell duration.'
+  };
+  const abbreviations = {Strength:'STR',Dexterity:'DEX',Constitution:'CON',Intelligence:'INT',Wisdom:'WIS',Psyche:'PSY'};
+  const signed = value => (value >= 0 ? '+' : '−') + fmt(Math.abs(value), 1);
+  let state = {lineage:'Dommer', age:30, body:'Fit', weightPercent:50, mixed:false, secondaryLineage:'Hladan', ancestryPercent:75, height:186, stats:{}, targetPsyche:100, preset:'Hybrid'};
+  let profile, pinned = null, skillPanel = null, toastTimer;
+  function profileInput() { return {lineage:state.lineage, age:state.age, body:state.body, weightPercent:state.weightPercent, secondaryLineage:state.mixed || state.lineage === 'Giantkin' ? state.secondaryLineage : undefined, ancestryPercent:state.mixed || state.lineage === 'Giantkin' ? state.ancestryPercent : 100}; }
+  function setNormalized(result) { state.stats = {...result.stats}; state.height = result.height; }
+  function message(text) { $('change-message').textContent = text || ''; }
+  function toast(text) { $('toast').textContent = text; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('toast').hidden = true; }, 4200); }
+  function currentName(p = profile) { return p.name || p.lineage || state.lineage; }
+  function currentAttributes() { return R.effectiveStats(state.stats, profile); }
+  function currentMetrics() { return R.derive(currentAttributes(), state.height, state.body, state.targetPsyche, state.weightPercent); }
+  function optionList(keys, selected) { return keys.map(k => `<option value="${esc(k)}"${k === selected ? ' selected' : ''}>${esc(k)}</option>`).join(''); }
+  function refreshSelectors() {
+    const family = familyOf(state.lineage);
+    if (family === 'Orc') state.mixed = false;
+    $('family').value = family;
+    $('lineage').innerHTML = optionList(lineageNames.filter(k => familyOf(k) === family), state.lineage);
+    const isGiant = state.lineage === 'Giantkin';
+    $('mixed-label').hidden = isGiant || family === 'Orc';
+    $('mixed').checked = state.mixed;
+    $('ancestry-fields').hidden = !isGiant && !state.mixed;
+    const secondChoices = lineageNames.filter(k => familyOf(k) === (isGiant ? 'Human' : family) && k !== state.lineage);
+    if (!secondChoices.includes(state.secondaryLineage)) state.secondaryLineage = secondChoices[0] || 'Dommer';
+    $('secondary-lineage').innerHTML = optionList(secondChoices, state.secondaryLineage);
+    $('second-lineage-label').firstChild.textContent = isGiant ? 'Human ancestry' : 'Second lineage';
+    $('ancestry').min = isGiant ? 31.25 : 6.25; $('ancestry').max = isGiant ? 75 : 93.75;
+    state.ancestryPercent = clamp(state.ancestryPercent, Number($('ancestry').min), Number($('ancestry').max));
+    $('ancestry').value = state.ancestryPercent;
+    $('ancestry-label').textContent = isGiant ? 'Titan ancestry' : `${state.lineage} ancestry`;
+    $('ancestry-value').textContent = `${fmt(state.ancestryPercent, 2)}%`;
+  }
+  function refreshProfile(reason = '') {
+    refreshSelectors();
+    profile = R.getProfile(profileInput());
+    state.body = profile.body; state.weightPercent = profile.weightPercent;
+    const result = R.normalizeBuild(profile, state.stats, state.height);
+    setNormalized(result);
+    const changes = Array.isArray(result.changes) ? result.changes : [];
+    message(reason + (changes.length ? ' ' + changes.join(' ') + ' Returned points stay in the available pool.' : ''));
+    render();
+  }
+  function applyPreset(preset) {
+    state.preset = preset;
+    setNormalized(R.allocatePreset(profile, preset, state.height));
+    message(`${preset} example applied. Adjust any attribute to make your own build.`);
+    render();
+  }
+  function buildAttributeControls() {
+    $('attribute-controls').innerHTML = D.stats.map(k => `<div class="attr"><div class="attr-top"><div class="attr-name"><span class="attr-code">${abbreviations[k]}</span><label for="stat-${k}">${esc(k)}</label></div><div class="attr-values" aria-label="Effective score and maximum"><strong id="effective-${k}"></strong><span>/</span><span class="cap" id="cap-${k}"></span></div></div><div class="cap-breakdown" id="breakdown-${k}"></div><div class="investment-row"><input type="range" id="stat-${k}" min="0" step="1" aria-label="${esc(k)} points invested"><label class="invested-input"><input id="number-${k}" type="number" min="0" step="1" aria-label="${esc(k)} points invested"><span>invested</span></label></div><div class="allocation-detail" id="detail-${k}"></div><p class="hint">${attributeDescriptions[k]}</p></div>`).join('');
+    D.stats.forEach(k => {
+      const update = event => {
+        if (event.target.value === '') return;
+        const balance = R.account(state.stats, state.height, profile);
+        const max = Math.min(profile.caps[k] - 10, state.stats[k] - 10 + Math.max(0, balance.remaining));
+        state.stats[k] = 10 + clamp(Math.round(finite(event.target.value, state.stats[k] - 10)), 0, max);
+        state.preset = '';
+        message(''); render();
+      };
+      $('stat-' + k).addEventListener('input', update);
+      $('number-' + k).addEventListener('change', update);
+    });
+  }
+  function recognitionText() {
+    if (profile.isGiantkin) return 'Giantkin: no homeland recognition at any permitted blend, including 75% Titan.';
+    if (!profile.mixed) return `Homeland recognition: ${profile.recognition}.`;
+    const recognized = profile.recognition;
+    return recognized ? `Homeland recognition: ${recognized} (at least 75%).` : 'No 75% lineage: permanent outsider status. Usually a minor issue for lawful play; more consequential for Reds.';
+  }
+  function render() {
+    $('build-title').textContent = currentName();
+    $('build-subtitle').textContent = `Age ${state.age} · ${state.body} (${state.weightPercent}%) · ${state.height} cm`;
+    $('lineage-description').textContent = descriptions[state.lineage] || '';
+    window.IronboundWorld.renderOrigin($('origin-guide'), profile);
+    $('recognition').textContent = recognitionText();
+    $('age').value = state.age; $('age-value').textContent = state.age;
+    $('body').value = state.body;
+    $('weight').value = state.weightPercent; $('weight-value').textContent = `${state.weightPercent}% · ${state.body}`;
+    $('body-note').textContent = `Direct health: ${signed(profile.healthBonus)} HP. Health and attributes change together at class boundaries. Weight preserves invested points.`;
+    $('height').min = profile.minHeight; $('height').max = profile.maxHeight; $('height').value = state.height;
+    $('height-value').textContent = `${state.height} cm`; $('height-min').textContent = `${profile.minHeight} cm`; $('height-max').textContent = `${profile.maxHeight} cm`;
+    const heightCost = (state.height - 150) / 2;
+    $('height-cost').textContent = heightCost >= 0 ? `${fmt(heightCost)} points in height · 1 point per 2 cm above 150.` : `${fmt(-heightCost)} points released below 150 cm; height-derived benefits also decrease.`;
+    const account = R.account(state.stats, state.height, profile);
+    $('points-remaining').textContent = fmt(account.remaining, 0);
+    $('points-spent').textContent = `${fmt(account.spent, 0)} spent`;
+    $('points-pool').textContent = `of ${fmt(profile.pool, 0)} available`;
+    $('budget-fill').style.width = `${clamp(account.spent / profile.pool * 100, 0, 100)}%`;
+    D.stats.forEach(k => {
+      const b = R.attributeBreakdown(k, state.stats[k], profile);
+      $('stat-' + k).max = b.cap - 10; $('stat-' + k).value = b.invested;
+      $('number-' + k).max = b.cap - 10; $('number-' + k).value = b.invested;
+      $('effective-' + k).textContent = b.effective;
+      $('cap-' + k).textContent = b.effectiveCap;
+      $('breakdown-' + k).innerHTML = `<span>Max ${b.effectiveCap}</span><span class="age-adjustment">(${signed(b.ageDelta)} age)</span><span class="weight-adjustment">[${signed(b.weight)} weight]</span><span class="base-potential">base ${fmt(b.baseline, 2)}</span>`;
+      const detail = $('detail-' + k);
+      detail.classList.toggle('penalty', b.weight < 0 && b.effective === 10);
+      detail.textContent = b.weight < 0
+        ? `${b.penaltyPaid}/${-b.weight} penalty points covered. ` + (b.pointsToNext === null ? 'At allocation cap.' : b.effective === 10 ? `${b.pointsToNext} more ${b.pointsToNext === 1 ? 'point' : 'points'} to reach 11.` : 'Each further point raises the score by 1.')
+        : `${b.weight > 0 ? '+' + b.weight + ' weight bonus; ' : ''}${b.invested} of ${b.cap - 10} possible points invested.`;
+    });
+    document.querySelectorAll('[data-preset]').forEach(button => button.classList.toggle('selected', button.dataset.preset === state.preset));
+    $('target-psyche').value = state.targetPsyche; $('target-psyche-value').textContent = state.targetPsyche;
+    renderMetrics(currentMetrics());
+    $('skills-character').textContent = `${currentName()} · age ${state.age}`;
+    if (skillPanel) skillPanel.refresh();
+    if (!$('panel-compare').hidden) renderComparison();
+  }
+  const metricRows = [
+    ['meleeBonus','Melee damage bonus','%',1], ['speed','Movement',' m/s',2], ['exertedSpeed','Shift movement',' m/s',2],
+    ['castTimeMultiplier','Cast time','× base',3], ['effectiveOffense','Effective spell offense','',1], ['effectiveResistance','Effective spell resistance','',1],
+    ['hostileDurationMultiplier','Hostile debuff duration','× base',3], ['buffDurationMultiplier','Beneficial duration','× base',3],
+    ['carryWeight','Carry capacity',' kg',1], ['armorWeight','Armor capacity',' kg',1], ['bookTrainingMultiplier','Book learning','× base',3]
+  ];
+  function displayMetric(key, value, digits = 1) { return fmt(value, digits); }
+  function renderMetrics(m) {
+    $('vital-metrics').innerHTML = [
+      ['health','Health','healthRegen',240,'Preview'], ['stamina','Stamina','staminaRegen',145,'Tuning default'], ['mana','Mana','manaRegen',200,'Preview']
+    ].map(([key,label,regen,scale,status]) => `<div class="vital ${key}"><div class="vital-head"><span>${label}</span><div class="vital-value-label"><span class="tag ${status === 'Preview' ? 'demo' : ''}">${status}</span><strong>${fmt(m[key],1)}</strong></div></div><div class="vital-line"><div style="width:${clamp(m[key]/scale*100,0,100)}%"></div></div><div class="hint"><span>${key === 'health' ? 'Resting recovery · preview' : key === 'mana' ? 'Passive recovery · preview' : 'Ready recovery · default'}</span><span>${fmt(m[regen],2)} / sec</span></div></div>`).join('');
+    $('combat-metrics').innerHTML = metricRows.map(([key,label,unit,digits]) => `<div class="metric-row"><span>${label}${['carryWeight','armorWeight','bookTrainingMultiplier','castTimeMultiplier','hostileDurationMultiplier','buffDurationMultiplier'].includes(key) ? '<span class="tag demo">Preview</span>' : ''}</span><strong>${key === 'meleeBonus' && m[key] >= 0 ? '+' : ''}${displayMetric(key,m[key],digits)}${unit}</strong></div>`).join('');
+    const psyche = currentAttributes().Psyche, delta = psyche - state.targetPsyche;
+    $('duration-description').textContent = `Caster Psyche ${psyche} − target ${state.targetPsyche} = ${delta}. Duration ${fmt(m.hostileDurationMultiplier * 100,1)}% of base. Equal or higher target Psyche removes the extension, never the base duration. The ramp to 118% is provisional.`;
+  }
+  function snapshot() { return {version:2, allocationModel:'raw-score-is-10-plus-paid-points', lineage:state.lineage, age:state.age, body:state.body, weightPercent:state.weightPercent, mixed:state.mixed, secondaryLineage:state.secondaryLineage, ancestryPercent:state.ancestryPercent, height:state.height, stats:{...state.stats}, targetPsyche:state.targetPsyche, preset:state.preset, skills:skillPanel ? skillPanel.getState() : null}; }
+  function pin() { pinned = snapshot(); renderComparison(); toast('Build pinned. Change the character to compare the results.'); }
+  function renderComparison() {
+    if (!pinned) { $('comparison').innerHTML = '<div class="panel comparison-empty"><h2>Keep one build in view.</h2><p class="muted">Pin your current character, then try another lineage, age or allocation.</p></div>'; return; }
+    const pp = R.getProfile({lineage:pinned.lineage,age:pinned.age,body:pinned.body,weightPercent:pinned.weightPercent,secondaryLineage:pinned.mixed || pinned.lineage === 'Giantkin' ? pinned.secondaryLineage : undefined,ancestryPercent:pinned.mixed || pinned.lineage === 'Giantkin' ? pinned.ancestryPercent : 100});
+    const pa = R.effectiveStats(pinned.stats,pp), ca = currentAttributes();
+    const pm = R.derive(pa,pinned.height,pinned.body,state.targetPsyche,pinned.weightPercent), cm = currentMetrics();
+    const rows = [['Attribute pool',pp.pool,profile.pool,'',0],['Unspent points',R.account(pinned.stats,pinned.height,pp).remaining,R.account(state.stats,state.height,profile).remaining,'',0],['Height',pinned.height,state.height,' cm',0],['Body weight',pinned.weightPercent,state.weightPercent,'%',0],['Direct body HP',pp.healthBonus,profile.healthBonus,' HP',1],...D.stats.map(k => [k,pa[k],ca[k],'',0]),...D.stats.map(k => [`${k} invested`,pinned.stats[k]-10,state.stats[k]-10,'',0]),...D.stats.map(k => [`${k} maximum`,pp.effectiveCaps[k],profile.effectiveCaps[k],'',0]),['Health',pm.health,cm.health,'',1],['Stamina',pm.stamina,cm.stamina,'',1],['Mana',pm.mana,cm.mana,'',1],...metricRows.map(([key,label,unit,digits]) => [label,pm[key],cm[key],unit,digits]),['Mana regeneration',pm.manaRegen,cm.manaRegen,' / sec',2]];
+    $('comparison').innerHTML = `<div class="panel"><div class="compare-head"><div><span class="eyebrow">Side by side</span><p>Δ = current minus pinned.<br>A larger number is not always better.</p></div><div><span class="tag">Pinned</span><h3>${esc(pp.name || pinned.lineage)}</h3><p>Age ${pinned.age} · ${esc(pinned.body)} (${pinned.weightPercent}%)</p></div><div><span class="tag settled">Current</span><h3>${esc(currentName())}</h3><p>Age ${state.age} · ${esc(state.body)} (${state.weightPercent}%)</p></div></div><table class="compare-table"><caption class="comparison-caption">Attributes, potential and derived profile · target Psyche ${state.targetPsyche}</caption><thead><tr><th scope="col">Measure</th><th scope="col">Pinned</th><th scope="col">Current / difference</th></tr></thead><tbody>${rows.map(([label,a,b,unit,digits]) => {const delta=b-a;return `<tr><th scope="row">${esc(label)}</th><td>${fmt(a,digits)}${unit}</td><td>${fmt(b,digits)}${unit}<span class="delta">${Math.abs(delta)<.0001?'—':(delta>0?'+':'')+fmt(delta,digits)}</span></td></tr>`;}).join('')}</tbody></table><p class="comparison-caption">Combat-profile totals use attributes and body, without equipment or skill-effect curves. Allocation and cap differences are not a verdict on duel balance.</p></div>`;
+  }
+  function renderFormulas() {
+    const definitions = Array.isArray(D.metricDefinitions) ? D.metricDefinitions : Object.entries(D.metricDefinitions || {}).map(([key,def]) => ({key,...def}));
+    const extras = [
+      {label:'Allocation & height',status:'established',formula:'raw score = 10 + invested points\nspent = Σ(invested points) + (height_cm − 150) / 2\nremaining = lineage pool − spent',note:'The 400-point reference pool and lineage cap tables are existing tuning defaults. Dommer receive 432. Below-150 height uses signed accounting. Weight does not alter the pool or refund investment.'},
+      {label:'Age sets potential; weight changes the result',status:'established',formula:'raw cap = round_half_up(baseline cap + age offset)\neffective score = max(10, 10 + invested points + weight modifier)\neffective maximum = max(10, raw cap + weight modifier)',note:'A −20 modifier uses the first 20 invested points to overcome its penalty. Point 21 raises the effective score to 11. Age changes the allocation ceiling, not the 10-point starting floor. Age offsets remain tuning defaults.'},
+      {label:'Weight and health',status:'preview',formula:'class anchor = nearest 10% on the 0–100% scale\ndirect HP adjustment = −15 + 0.5 × class anchor',note:'Health and attribute modifiers change together in class steps. Overall HP also includes Constitution. Emaciated receives −15 direct HP; Fit +10; Obese +35. The upper endpoint, intermediate HP amounts and class boundaries are tuning defaults. This percentage is not body-fat percentage.'},
+      {label:'Ancestry blending',status:'preview',formula:'blended cap = weighted parental baseline caps\nblended pool = round_half_up(400 × weighted multiplier)',note:'Two-source blending illustrates the decided 6.25% selection steps. Interpolation is not finalized. Giantkin permit 31.25–75% Titan and never gain homeland recognition.'},
+      {label:'Attribute bonuses to skills',status:'proposed',formula:'one attribute: floor(A / 10)\ntwo attributes: floor((A + B) / 20)',note:'This mapping is proposed. Effective skills stop at 100; a secondary has no primary point charge. Attribute bonuses do not teach unknown skills.'}
+    ];
+    $('formula-list').innerHTML = [...extras,...definitions].map(def => {const raw=String(def.status || 'preview');const preview=/preview|illustrative|proposed|planner|mixed/.test(raw.toLowerCase());const established=/^decided$|^established$/.test(raw);const badge=preview?'Preview':established?'Established':'Tuning default';return `<article class="formula-item"><h3>${esc(def.label || def.key)} <span class="tag ${preview?'demo':established?'settled':''}">${badge}</span></h3><code>${esc(def.formula || '')}</code><p>${esc(def.note || def.description || '')}</p></article>`;}).join('');
+    $('weight-table').innerHTML = `<div class="weight-table-scroll"><table><caption>Weight-class modifiers · (age) and [weight] remain separate on the character sheet</caption><thead><tr><th scope="col">Class</th><th scope="col">Anchor</th>${D.stats.map(k=>`<th scope="col">${abbreviations[k]}</th>`).join('')}<th scope="col">Direct HP*</th></tr></thead><tbody>${Object.entries(D.bodies).map(([name,b])=>`<tr><th scope="row">${esc(name)}</th><td>${b.weightPercent}%</td>${D.stats.map(k=>`<td class="${b.offsets[k]<0?'offset-negative':b.offsets[k]>0?'offset-positive':''}">${signed(b.offsets[k])}</td>`).join('')}<td>${signed(b.healthBonus)}</td></tr>`).join('')}</tbody></table></div><p class="hint">*Direct HP is added after Constitution and height. Emaciated −15 is fixed; the remaining HP values are provisional. Class anchors are 10% apart, with boundaries halfway between anchors.</p>`;
+  }
+  function switchTab(tab) {
+    document.querySelectorAll('[data-tab]').forEach(button => {const active=button.dataset.tab===tab;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active));});
+    document.querySelectorAll('.tab-panel').forEach(panel => {panel.hidden=panel.id!=='panel-'+tab;});
+    if (tab === 'compare') renderComparison();
+    if (tab === 'skills' && skillPanel) skillPanel.refresh();
+  }
+  document.querySelectorAll('[data-tab]').forEach(button => button.addEventListener('click', () => switchTab(button.dataset.tab)));
+  document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => applyPreset(button.dataset.preset)));
+  $('family').addEventListener('change', event => {state.lineage=lineageNames.find(k=>familyOf(k)===event.target.value);state.mixed=false;state.preset='';if(state.lineage==='Giantkin'){state.secondaryLineage='Dommer';state.ancestryPercent=50;}refreshProfile('Origin changed. Existing allocation is kept where the new limits allow.');});
+  $('lineage').addEventListener('change', event => {state.lineage=event.target.value;state.preset='';refreshProfile('Lineage changed. Higher caps do not automatically spend points.');});
+  $('mixed').addEventListener('change', event => {state.mixed=event.target.checked;state.preset='';refreshProfile('Ancestry preview updated.');});
+  $('secondary-lineage').addEventListener('change', event => {state.secondaryLineage=event.target.value;state.preset='';refreshProfile('Ancestry preview updated.');});
+  $('ancestry').addEventListener('input', event => {state.ancestryPercent=Number(event.target.value);state.preset='';refreshProfile('Ancestry preview updated.');});
+  $('age').addEventListener('input', event => {state.age=Number(event.target.value);state.preset='';refreshProfile('Age changes potential and height limits; it does not add allocation points.');});
+  $('body').addEventListener('change', event => {state.body=event.target.value;state.weightPercent=Object.keys(D.bodies).indexOf(state.body)*10;state.preset='';refreshProfile('Weight class changed. Points invested are preserved; effective attributes update.');});
+  $('weight').addEventListener('input', event => {state.weightPercent=Number(event.target.value);state.preset='';refreshProfile('Weight updated. Attributes and direct HP change together at class boundaries.');});
+  $('height').addEventListener('input', event => {const requested=Number(event.target.value);const statCost=D.stats.reduce((sum,k)=>sum+state.stats[k]-10,0);const affordable=150+2*(profile.pool-statCost);state.height=clamp(requested,profile.minHeight,Math.min(profile.maxHeight,affordable));state.preset='';message(requested>state.height?'Return some attribute points to increase height.':'');render();});
+  $('target-psyche').addEventListener('input', event => {state.targetPsyche=Number(event.target.value);render();});
+  $('clear-points').addEventListener('click', () => {D.stats.forEach(k=>state.stats[k]=10);state.preset='';message('Attribute points returned. Height remains allocated.');render();});
+  $('pin-build').addEventListener('click', pin);$('replace-pin').addEventListener('click', pin);
+  $('export-build').addEventListener('click', () => {
+    const build={format:'ironbound-character-planner',version:2,savedAt:new Date().toISOString(),build:snapshot(),preview:{name:currentName(),rawCaps:profile.caps,effectiveCaps:profile.effectiveCaps,effectiveAttributes:currentAttributes(),derived:currentMetrics()},notice:'Design preview. Illustrative formulas are not finalized game balance.'};
+    const url=URL.createObjectURL(new Blob([JSON.stringify(build,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`Ironbound-${state.lineage}-age-${state.age}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Build saved. Send the planner file with this build to share it.');
+  });
+  $('import-build').addEventListener('click', () => $('build-file').click());
+  $('build-file').addEventListener('change', async event => {
+    const file=event.target.files[0];if(!file)return;
+    try {
+      if(file.size>1000000)throw new Error('This file is too large for a planner build.');
+      const input=JSON.parse(await file.text());if(input.format!=='ironbound-character-planner'||![1,2].includes(input.version)||!input.build)throw new Error('Choose a version 1 or 2 Ironbound planner build.');
+      const b=input.build;if(!lineageNames.includes(b.lineage))throw new Error('Unknown playable lineage.');
+      const bodyAlias = {Skeletal:'Emaciated', Slim:'Slender'}, loadedBody = bodyAlias[b.body] || b.body;
+      state={lineage:b.lineage,age:clamp(Math.round(finite(b.age,30)),18,80),body:Object.hasOwn(D.bodies,loadedBody)?loadedBody:'Fit',weightPercent:clamp(Math.round(finite(b.weightPercent,Math.max(0,Object.keys(D.bodies).indexOf(Object.hasOwn(D.bodies,loadedBody)?loadedBody:'Fit'))*10)),0,100),mixed:!!b.mixed,secondaryLineage:lineageNames.includes(b.secondaryLineage)?b.secondaryLineage:'Dommer',ancestryPercent:Math.round(finite(b.ancestryPercent,75)/6.25)*6.25,height:finite(b.height,186),stats:Object.fromEntries(D.stats.map(k=>[k,finite(b.stats?.[k],10)])),targetPsyche:clamp(finite(b.targetPsyche,100),10,150),preset:''};
+      refreshProfile(input.version===1?'Older build imported as paid allocation. Skeletal maps to Emaciated; Slim maps to Slender. Effective values now follow the new weight rules; age or lineage caps may return points.':'Loaded build adjusted to current planner limits where needed.');if(skillPanel){if(b.skills)skillPanel.setState(b.skills);else skillPanel.reset();}switchTab('character');toast('Build loaded.');
+    } catch(error) {toast(error.message || 'Unable to read this build.');}
+    event.target.value='';
+  });
+  $('body').innerHTML = optionList(Object.keys(D.bodies), state.body);
+  refreshSelectors();profile=R.getProfile(profileInput());setNormalized(R.allocatePreset(profile,'Hybrid',state.height));buildAttributeControls();
+  skillPanel=window.IronboundSkills.mount($('skills-root'),{getAttributes:currentAttributes,onChange:()=>{}});
+  window.IronboundWorld.mountLaw($('panel-law'));
+  renderFormulas();render();
+})();
+
+</script>
+</body></html>
