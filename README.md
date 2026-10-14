@@ -5,6 +5,7 @@
 Explore Ironbound's evolving character design in your browser:
 
 - Lineages, ancestry, age, height and eleven weight classes.
+- Original heroic concept portraits for all 14 playable lineage choices.
 - Six attributes, point allocation and derived combat statistics.
 - Action skills and side-by-side build comparison.
 - Homeland summaries and an interactive law and reputation guide.
@@ -14,8 +15,8 @@ This is a design preview. Provisional values are labelled, and equipment and ski
 
 ## Use offline
 
-Download `index.html` and open it in a modern browser. No account or installation is required. Builds stay in your browser session unless you use **Save build** to download them.
+Download this repository as a ZIP, extract it, and open `index.html` in a modern browser. Keep the `assets` folder beside it so the portraits remain available. No account or installation is required. Builds stay in your browser session unless you use **Save build** to download them.
 
 ## Publishing
 
-GitHub Pages serves `index.html` from the root of `main`. Updating that file updates the website after GitHub finishes deployment.
+GitHub Pages serves `index.html` from the root of `main`. Update that file and any changed images in `assets/portraits` together. The website updates after GitHub finishes deployment.

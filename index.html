@@ -13,6 +13,10 @@
 
 .weight-reference{margin-top:18px}.weight-table-scroll{overflow-x:auto}.weight-reference table{width:100%;border-collapse:collapse;font-size:12px;margin:14px 0}.weight-reference caption{text-align:left;color:var(--muted);font-size:11px;margin-bottom:12px}.weight-reference th,.weight-reference td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:right;white-space:nowrap}.weight-reference th:first-child{text-align:left}.weight-reference tbody th{font-weight:500}.offset-negative{color:var(--red)}.offset-positive{color:var(--accent)}
 
+.character-identity{display:flex;align-items:center;gap:24px;min-width:0;flex:1}.character-title{min-width:0}.character-title h1{overflow-wrap:anywhere}.character-topline>.accent-button{flex:none}.character-portrait{flex:none;width:144px;margin:0}.character-portrait img{display:block;width:144px;height:144px;object-fit:cover;object-position:center 35%;border:1px solid #8f7d57;border-radius:6px;background:#1b2322;box-shadow:0 8px 24px #0004}.character-portrait figcaption{margin-top:7px;color:#aeb7ae;font-size:10px;line-height:1.4;text-align:center;letter-spacing:.04em}
+@media(min-width:1250px){.character-portrait,.character-portrait img{width:156px}.character-portrait img{height:156px}}
+@media(max-width:740px){.character-topline{flex-wrap:wrap;align-items:center;gap:14px}.character-identity{gap:16px;flex-basis:100%}.character-portrait,.character-portrait img{width:112px}.character-portrait img{height:112px}.character-portrait figcaption{font-size:9px}.character-title h1{font-size:27px}.character-topline>.accent-button{margin-left:auto;max-width:none}}
+
 </style><style>
 .skills-explorer{color:var(--text,#eee6d4);font-family:inherit;--skill-panel:var(--panel,#1c2326);--skill-muted:var(--muted,#a7aaa5);--skill-gold:var(--gold,#d4b675);--skill-line:var(--line,#3d4647);--skill-accent:var(--accent,#7ab8ac)}
 .skills-explorer *{box-sizing:border-box}
@@ -80,7 +84,13 @@
   <div class="notice"><span class="status-dot"></span><p><strong>A working model of the game.</strong> Established design rules and existing tuning defaults are preserved. New illustrative formulas are marked <span class="tag demo">Preview</span>; this is not the live Unreal character system.</p></div>
   <main>
     <section id="panel-character" class="tab-panel">
-      <div class="build-topline"><div><div class="eyebrow">Build your character</div><h1 id="build-title">Dommer</h1><p id="build-subtitle" class="muted">Age 30 · Fit</p></div><button id="pin-build" class="accent-button">Pin for comparison</button></div>
+      <div class="build-topline character-topline">
+        <div class="character-identity">
+          <figure id="character-portrait" class="character-portrait" hidden><img id="character-portrait-image" width="144" height="144" alt="" decoding="async"><figcaption id="character-portrait-caption">Concept portrait</figcaption></figure>
+          <div class="character-title"><div class="eyebrow">Build your character</div><h1 id="build-title">Dommer</h1><p id="build-subtitle" class="muted">Age 30 · Fit</p></div>
+        </div>
+        <button id="pin-build" class="accent-button">Pin for comparison</button>
+      </div>
       <div class="character-grid">
         <aside class="panel origins">
           <div class="section-heading"><span class="section-number">01</span><h2>Origin &amp; body</h2></div>
@@ -1410,6 +1420,95 @@
 }());
 
 </script><script>
+/* Representative concept art; not a simulation of age, body or blended ancestry. */
+window.IronboundPortraits = {
+  "Dommer": {
+    "src": "assets/portraits/dommer.jpg",
+    "alt": "Heroic male Dommer adventurer, original fantasy concept portrait",
+    "lineage": "Dommer",
+    "gender": "male"
+  },
+  "Hladan": {
+    "src": "assets/portraits/hladan.jpg",
+    "alt": "Heroic female Hladan adventurer, original fantasy concept portrait",
+    "lineage": "Hladan",
+    "gender": "female"
+  },
+  "Nubian": {
+    "src": "assets/portraits/nubian.jpg",
+    "alt": "Heroic male Nubian adventurer, original fantasy concept portrait",
+    "lineage": "Nubian",
+    "gender": "male"
+  },
+  "Wuri": {
+    "src": "assets/portraits/wuri.jpg",
+    "alt": "Heroic female Wuri adventurer, original fantasy concept portrait",
+    "lineage": "Wuri",
+    "gender": "female"
+  },
+  "Yurtan": {
+    "src": "assets/portraits/yurtan.jpg",
+    "alt": "Heroic male Yurtan adventurer, original fantasy concept portrait",
+    "lineage": "Yurtan",
+    "gender": "male"
+  },
+  "Mashi": {
+    "src": "assets/portraits/mashi.jpg",
+    "alt": "Heroic female Mashi adventurer, original fantasy concept portrait",
+    "lineage": "Mashi",
+    "gender": "female"
+  },
+  "Keldren": {
+    "src": "assets/portraits/keldren.jpg",
+    "alt": "Heroic male Keldren adventurer, original fantasy concept portrait",
+    "lineage": "Keldren",
+    "gender": "male"
+  },
+  "Sairen": {
+    "src": "assets/portraits/sairen.jpg",
+    "alt": "Heroic female Sairen adventurer, original fantasy concept portrait",
+    "lineage": "Sairen",
+    "gender": "female"
+  },
+  "Verathi": {
+    "src": "assets/portraits/verathi.jpg",
+    "alt": "Heroic male Verathi adventurer, original fantasy concept portrait",
+    "lineage": "Verathi",
+    "gender": "male"
+  },
+  "Khazad": {
+    "src": "assets/portraits/khazad.jpg",
+    "alt": "Heroic female Khazad adventurer, original fantasy concept portrait",
+    "lineage": "Khazad",
+    "gender": "female"
+  },
+  "Friode": {
+    "src": "assets/portraits/friode.jpg",
+    "alt": "Heroic male Friode adventurer, original fantasy concept portrait",
+    "lineage": "Friode",
+    "gender": "male"
+  },
+  "Iwaman": {
+    "src": "assets/portraits/iwaman.jpg",
+    "alt": "Heroic female Iwaman adventurer, original fantasy concept portrait",
+    "lineage": "Iwaman",
+    "gender": "female"
+  },
+  "Titans": {
+    "src": "assets/portraits/titans.jpg",
+    "alt": "Heroic male Titans adventurer, original fantasy concept portrait",
+    "lineage": "Titans",
+    "gender": "male"
+  },
+  "Giantkin": {
+    "src": "assets/portraits/giantkin.jpg",
+    "alt": "Heroic female Giantkin adventurer, original fantasy concept portrait",
+    "lineage": "Giantkin",
+    "gender": "female"
+  }
+};
+
+</script><script>
 (function () {
   'use strict';
   const D = window.IronboundData, R = window.IronboundRules;
@@ -1516,9 +1615,37 @@
     const recognized = profile.recognition;
     return recognized ? `Homeland recognition: ${recognized} (at least 75%).` : 'No 75% lineage: permanent outsider status. Usually a minor issue for lawful play; more consequential for Reds.';
   }
+  const failedPortraits = new Set();
+  $('character-portrait-image').addEventListener('error', event => {
+    failedPortraits.add(event.currentTarget.getAttribute('src'));
+    $('character-portrait').hidden = true;
+  });
+  function renderPortrait() {
+    const ancestry = profile.ancestry || [];
+    const largestShare = Math.max(0, ...ancestry.map(entry => entry.percent));
+    const dominant = ancestry.filter(entry => entry.percent === largestShare);
+    const lineage = profile.isGiantkin ? 'Giantkin' :
+      (dominant.find(entry => entry.lineage === state.lineage) || dominant[0])?.lineage || state.lineage;
+    const portrait = window.IronboundPortraits?.[lineage];
+    const figure = $('character-portrait'), image = $('character-portrait-image');
+    if (!portrait?.src || failedPortraits.has(portrait.src)) {
+      figure.hidden = true;
+      image.removeAttribute('src');
+      image.alt = '';
+      return;
+    }
+    if (image.getAttribute('src') !== portrait.src) image.src = portrait.src;
+    image.alt = portrait.alt || `${lineage} character concept portrait`;
+    $('character-portrait-caption').textContent = profile.mixed && !profile.isGiantkin ? `${lineage} concept portrait` : 'Concept portrait';
+    figure.title = profile.mixed && !profile.isGiantkin ?
+      `${lineage} inspiration. Concept art does not blend ancestry or change with age and body weight.` :
+      'Lineage concept art. Appearance does not change with age and body weight.';
+    figure.hidden = false;
+  }
   function render() {
     $('build-title').textContent = currentName();
     $('build-subtitle').textContent = `Age ${state.age} · ${state.body} (${state.weightPercent}%) · ${state.height} cm`;
+    renderPortrait();
     $('lineage-description').textContent = descriptions[state.lineage] || '';
     window.IronboundWorld.renderOrigin($('origin-guide'), profile);
     $('recognition').textContent = recognitionText();
