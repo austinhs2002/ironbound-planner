@@ -87,14 +87,14 @@
       <div class="build-topline character-topline">
         <div class="character-identity">
           <figure id="character-portrait" class="character-portrait" hidden><img id="character-portrait-image" width="144" height="144" alt="" decoding="async"><figcaption id="character-portrait-caption">Concept portrait</figcaption></figure>
-          <div class="character-title"><div class="eyebrow">Build your character</div><h1 id="build-title">Dommer</h1><p id="build-subtitle" class="muted">Age 30 · Fit</p></div>
+          <div class="character-title"><div class="eyebrow">Build your character</div><h1 id="build-title">Taranian</h1><p id="build-subtitle" class="muted">Age 30 · Fit</p></div>
         </div>
         <button id="pin-build" class="accent-button">Pin for comparison</button>
       </div>
       <div class="character-grid">
         <aside class="panel origins">
           <div class="section-heading"><span class="section-number">01</span><h2>Origin &amp; body</h2></div>
-          <label class="field">People<select id="family"><option value="Human">Humans</option><option value="Elf">Elves</option><option value="Dwarf">Dwarves</option><option value="Orc">Titans</option><option value="Giantkin">Giantkin</option></select></label>
+          <label class="field">People<select id="family"><option value="Human">Humans</option><option value="Elf">Elves</option><option value="Dwarf">Dwarves</option><option value="Orc">Titanids</option><option value="Giantkin">Mawkin</option></select></label>
           <label class="field">Lineage<select id="lineage"></select></label>
           <p id="lineage-description" class="flavor"></p><div id="origin-guide"></div>
           <label class="check-line" id="mixed-label"><input id="mixed" type="checkbox"> Blend ancestry <span class="tag demo">Preview math</span></label>
@@ -135,6 +135,14 @@
   <div id="toast" role="status" aria-live="polite" hidden></div>
 </div>
 <script>
+/* Display names (Nov 22 2026). The keys on the left stay the internal ids everywhere in this page and in saved builds. */
+window.IronboundShown = (function () {
+  const shown = { Dommer: 'Taranian', Hladan: 'Skaldan', Khazad: 'Khazan', Friode: 'Frioden', Iwaman: 'Iwami', Sairen: 'Saelren', Titans: 'Titanids', Giantkin: 'Mawkin', Colossi: 'Spartoi' };
+  const name = key => Object.prototype.hasOwnProperty.call(shown, key) ? shown[key] : key;
+  name.adjective = key => key === 'Titans' ? 'Titanid' : name(key);
+  return name;
+}());
+</script><script>
 /* Offline planner snapshot. Canonical design files remain the source of authority. */
 (function (root) {
   'use strict';
@@ -159,7 +167,7 @@
     Friode: lineage('Friode', 'Dwarf', [116, 82, 120, 117, 99, 104], [154, 174], 372, 0.93, [9, 2, 10, 9, 5, 6, 2], 'Strong physical and Intelligence caps within a tighter allocation pool.'),
     Iwaman: lineage('Iwaman', 'Dwarf', [108, 88, 116, 117, 104, 111], [144, 162], 372, 0.93, [7, 3, 9, 9, 6, 8, 1], 'Low height, high Constitution and strong mental potential.'),
     Titans: lineage('Titans', 'Orc', [120, 94, 113, 93, 94, 104], [184, 222], 356, 0.89, [10, 4, 8, 4, 4, 6, 9], 'Highest playable baseline Strength and height, with a restrictive allocation pool.'),
-    Giantkin: { name: 'Giantkin', category: 'Giantkin', playable: true, requiresAncestry: true, status: 'planner_preview', description: 'Human–Titan ancestry. Attribute interpolation is an illustrative preview; homeland recognition is always excluded.' },
+    Giantkin: { name: 'Giantkin', category: 'Giantkin', playable: true, requiresAncestry: true, status: 'planner_preview', description: 'Human–Titanid ancestry. Attribute interpolation is an illustrative preview; homeland recognition is always excluded.' },
     Colossi: lineage('Colossi', 'Orc', [120, 94, 112, 75, 75, 104], [204, 228], null, 1, [10, 4, 8, 1, 1, 6, 10], 'NPC only. Intelligence characterization remains unresolved; not a playable build.', false)
   };
   const weight = {
@@ -285,7 +293,7 @@
     const virtual = requested === 'Giantkin';
     const first = virtual ? 'Titans' : requested;
     const row = D.lineages[first];
-    if (!row || !row.playable || row.requiresAncestry) throw new Error('Choose a playable lineage. Colossi are NPC-only.');
+    if (!row || !row.playable || row.requiresAncestry) throw new Error('Choose a playable lineage. Spartoi are NPC-only.');
     const age = clamp(round(finite(options.age, 30)), 18, 80);
     const weightProfile = getWeightProfile(options.weightPercent, options.body);
     const body = weightProfile.body;
@@ -299,14 +307,14 @@
       if (!other || !other.playable || other.requiresAncestry) throw new Error('The second ancestry must be a playable pure lineage.');
       isGiantkin = (first === 'Titans' && other.category === 'Human') || (secondary === 'Titans' && row.category === 'Human');
       const sameGroup = row.category === other.category && ['Human', 'Elf', 'Dwarf'].includes(row.category);
-      if (!isGiantkin && !sameGroup) throw new Error('Mix within Human, Elf or Dwarf lineages, or use human–Titan Giantkin.');
+      if (!isGiantkin && !sameGroup) throw new Error('Mix within Human, Elf or Dwarf lineages, or use human–Titanid Mawkin.');
       if (isGiantkin) {
         const titanShare = clamp(first === 'Titans' ? share : 100 - share, 31.25, 75);
         share = first === 'Titans' ? titanShare : 100 - titanShare;
-        notes.push('Giantkin never gain homeland recognition, including at 75% Titan ancestry.');
+        notes.push('Mawkin never gain homeland recognition, including at 75% Titanid ancestry.');
       }
     }
-    if (virtual && !isGiantkin) throw new Error('Giantkin require one human ancestry and Titan ancestry.');
+    if (virtual && !isGiantkin) throw new Error('Mawkin require one human ancestry and Titanid ancestry.');
     let ancestry = secondary ? [{ lineage: first, percent: share }, { lineage: secondary, percent: 100 - share }] : [{ lineage: first, percent: 100 }];
     ancestry = ancestry.filter(entry => entry.percent > 0);
     const mixed = ancestry.length > 1;
@@ -327,7 +335,8 @@
     notes.push('Weight attribute modifiers and direct HP change together by class. The HP amount assigned to each class remains illustrative.');
     notes.push('Allocation pays for raw scores. Weight modifiers then change effective scores once; negative modifiers must be paid through before rising above the effective floor of 10.');
     const category = isGiantkin ? 'Giantkin' : D.lineages[ancestry[0].lineage].category;
-    const name = isGiantkin ? `Giantkin (${ancestry.map(entry => `${entry.percent}% ${entry.lineage}`).join(' / ')})` : mixed ? ancestry.map(entry => `${entry.percent}% ${entry.lineage}`).join(' / ') : ancestry[0].lineage;
+    const shownName = root.IronboundShown;
+    const name = isGiantkin ? `Mawkin (${ancestry.map(entry => `${entry.percent}% ${shownName.adjective(entry.lineage)}`).join(' / ')})` : mixed ? ancestry.map(entry => `${entry.percent}% ${shownName.adjective(entry.lineage)}`).join(' / ') : shownName(ancestry[0].lineage);
     return {
       lineage: requested, name, category, age, body, weightPercent: weightProfile.weightPercent, healthBonus: weightProfile.healthBonus,
       caps: profileCaps, effectiveCaps, baselineCaps, ageOffsets, bodyOffsets,
@@ -1249,24 +1258,24 @@
   // The foreign-entry thresholds and category mapping are DEF-LAW-08 defaults.
   const origins = {
     Dommer: {
-      home: 'Dom · Dominion',
-      text: 'The Dominion stretches through dry grasslands, Mediterranean country and cold, rain-soaked forests. The Dommer once refused an alliance with the Keldren; later, their pact with the Hladan helped break Nubian imperial power and restore Wuri sovereignty.'
+      home: 'Taranis · the Dominion',
+      text: 'Tarania, the land of the Dominion, stretches through dry grasslands, Mediterranean country and cold, rain-soaked forests. The Taranians once refused an alliance with the Keldren; later, their pact with the Skaldan helped break Nubian imperial power and restore Wuri sovereignty.'
     },
     Hladan: {
       home: 'Hemland · the cold north',
-      text: 'From cold, wet country around Hemland, Kaldung and Fjordsted, the Hladan live closest to the Dommer. Their old alliance reshaped human politics. Farther into the northern mountains lie the snowy homelands of the Friode dwarves.'
+      text: 'From cold, wet country around Hemland, Kaldung and Fjordsted, the Skaldan live closest to the Taranians. Their old alliance reshaped human politics. Farther into the northern mountains lie the snowy homelands of the Frioden dwarves.'
     },
     Nubian: {
       home: 'Nepata · Kingdom of Kush',
       text: 'Nepata, Kerma and Meroe anchor a kingdom of northern savannah and desert margins. The Nubians once joined the Keldren in the second-greatest imperial alliance the world has known. Today, that distant empire has given way to a more uncertain balance of powers.'
     },
     Wuri: {
-      home: 'Wurian · Wurian Empire',
-      text: 'The Wuri inhabit warm, wet jungles that give way to savannah and desert toward Nubia. Their capital is Wurian. Once drawn into the Nubian imperial order, they regained sovereignty during the rebellions that reshaped the human realms.'
+      home: 'Wouri · Wurian Empire',
+      text: 'The Wuri inhabit warm, wet jungles that give way to savannah and desert toward Nubia. Their capital is Wouri. Once drawn into the Nubian imperial order, they regained sovereignty during the rebellions that reshaped the human realms.'
     },
     Yurtan: {
       home: 'Merv · the steppe and forest frontier',
-      text: 'More nomadic than their neighbors, the Yurtan range across steppes, forests and cold mountain edges between Dommer country and the Mashi frontier. Merv is their largest city. Elaborate guarded stops, vendors, farms and cattle make travel part of everyday life.'
+      text: 'More nomadic than their neighbors, the Yurtan range across steppes, forests and cold mountain edges between Tarania and the Mashi frontier. Merv is their largest city. Elaborate guarded stops, vendors, farms and cattle make travel part of everyday life.'
     },
     Mashi: {
       home: 'Guojing · Mashan Empire',
@@ -1274,31 +1283,31 @@
     },
     Keldren: {
       home: 'Grand cities of the elven peninsula',
-      text: 'Across the water from Nubian and Dommer shores stand the ordered cities of the Keldren. Their pact with the Nubians once sustained an immense imperial order. They remain a people of grand architecture and disciplined society, among elven neighbors now sovereign in their own right.'
+      text: 'Across the water from Nubian and Taranian shores stand the ordered cities of the Keldren. Their pact with the Nubians once sustained an immense imperial order. They remain a people of grand architecture and disciplined society, among elven neighbors now sovereign in their own right.'
     },
     Sairen: {
       home: 'Forests, jungles and mushroom groves',
-      text: 'The Sairen build impressive cities within the elven forests and embrace technology alongside woodland life. They are shorter and longer-lived than the Keldren. Their sovereignty emerged as the old elven imperial order weakened; dense forests remain their familiar country.'
+      text: 'The Saelren build impressive cities within the elven forests and embrace technology alongside woodland life. They are shorter and longer-lived than the Keldren. Their sovereignty emerged as the old elven imperial order weakened; dense forests remain their familiar country.'
     },
     Verathi: {
       home: 'Shallow cavern cities of the elven lands',
-      text: 'The Verathi favor cave cities close to the surface, far above the depths of the Iwaman. Their complexions range from pale peach through ash gray to black. Like the Sairen, they emerged as a sovereign people from the shadow of Keldren rule.'
+      text: 'The Verathi favor cave cities close to the surface, far above the depths of the Iwami. Their complexions range from pale peach through ash gray to black. Like the Saelren, they emerged as a sovereign people from the shadow of Keldren rule.'
     },
     Khazad: {
-      home: 'Khazad Empire · mountains along Yurtan lands',
-      text: 'Short, brown-haired and the most surface-oriented dwarves, the Khazad inhabit temperate mountains with cold seasons rather than endless snow. Their exposed settlements suffered the worst dwarf losses in the ancient Colossi conquests. Deep routes still connect them to the other dwarf peoples.'
+      home: 'Khazan Empire · mountains along Yurtan lands',
+      text: 'Short, brown-haired and the most surface-oriented dwarves, the Khazan inhabit temperate mountains with cold seasons rather than endless snow. Their exposed settlements suffered the worst dwarf losses in the ancient Spartoi conquests. Deep routes still connect them to the other dwarf peoples.'
     },
     Friode: {
-      home: 'Frioden · northern mountains near Hladan',
-      text: 'White-haired and exceptionally shaggy, the Friode are adapted to the northern cold. Their mountain country lies near the Hladan, along the snowy extension of the dwarf ranges. They endured the Colossi era with fewer losses than the more exposed Khazad.'
+      home: 'Frioden · northern mountains near Skaldan',
+      text: 'White-haired and exceptionally shaggy, the Frioden are adapted to the northern cold. Their mountain country lies near the Skaldan, along the snowy extension of the dwarf ranges. They endured the Spartoi era with fewer losses than the more exposed Khazan.'
     },
     Iwaman: {
       home: 'The deep world beneath Mashi',
-      text: 'Dark teal-gray Iwaman live so far below the Mashi that the surface people scarcely know they are there. Long tunnels reach the other dwarf realms. Their rare surface journeys use Khazad and Friode exits; in the deepest settlements, Colossi devastation survives chiefly as distant tales.'
+      text: 'Dark teal-gray Iwami live so far below the Mashi that the surface people scarcely know they are there. Long tunnels reach the other dwarf realms. Their rare surface journeys use Khazan and Frioden exits; in the deepest settlements, Spartoi devastation survives chiefly as distant tales.'
     },
     Titans: {
       home: 'The central Orc continent',
-      text: 'Green and brown-green Titans hold broad lands of dry, living wasteland, dark stone and central volcanoes. Their reach looks vast, yet the far stronger Colossi retain decisive power from a small enclave. Beyond Orc lands, a Titan enters a world whose laws treat them as an unprotected foreigner.'
+      text: 'Green and brown-green Titanids hold broad lands of dry, living wasteland, dark stone and central volcanoes. Their reach looks vast, yet the far stronger Spartoi retain decisive power from a small enclave. Beyond Orc lands, a Titanid enters a world whose laws treat them as an unprotected foreigner.'
     }
   };
 
@@ -1311,14 +1320,14 @@
       : [{ lineage: profile.lineage, percent: 100 }];
     const mixed = ancestry.length > 1;
     const introduction = profile.isGiantkin
-      ? '<p class="world-origin-intro">Giantkin carry human and Titan ancestry. No blend grants them homeland recognition, but earned standing can still open a town’s gates. Their ordinary legal affiliation is Blue in the current design default.</p>'
+      ? '<p class="world-origin-intro">Mawkin carry human and Titanid ancestry. No blend grants them homeland recognition, but earned standing can still open a town’s gates. Their ordinary legal affiliation is Blue in the current design default.</p>'
       : mixed
         ? '<p class="world-origin-intro">Two ancestral traditions shape this character. These are their peoples’ homelands; ancestry does not dictate where an individual must live.</p>'
         : '';
     const stories = ancestry.map(entry => {
       const origin = origins[entry.lineage];
       if (!origin) return '';
-      return `<article class="world-origin-story"><div class="world-origin-title">${mixed ? `<strong>${esc(entry.lineage)}</strong><span>${esc(entry.percent)}%</span>` : '<span class="eyebrow">Homeland &amp; history</span>'}</div><p class="world-origin-home">${esc(origin.home)}</p><p>${esc(origin.text)}</p></article>`;
+      return `<article class="world-origin-story"><div class="world-origin-title">${mixed ? `<strong>${esc(window.IronboundShown(entry.lineage))}</strong><span>${esc(entry.percent)}%</span>` : '<span class="eyebrow">Homeland &amp; history</span>'}</div><p class="world-origin-home">${esc(origin.home)}</p><p>${esc(origin.text)}</p></article>`;
     }).join('');
     container.classList.add('world-origin');
     container.innerHTML = introduction + stories;
@@ -1329,20 +1338,20 @@
     container.classList.add('world-law');
     container.innerHTML = `
       <div class="build-topline"><div><div class="eyebrow">Belonging, reputation &amp; risk</div><h1>Law across the border</h1><p class="muted">Orc and non-Orc societies mirror each other’s treatment of outsiders.</p></div></div>
-      <section class="panel law-principle"><h2>Being allowed inside does not mean being protected.</h2><p>A Titan can earn the standing to enter a civilized city, yet remain a lawful target for its players. A Blue visitor faces the same treatment in Orc territory. Standing opens gates; it does not change affiliation or erase murder notoriety.</p></section>
+      <section class="panel law-principle"><h2>Being allowed inside does not mean being protected.</h2><p>A Titanid can earn the standing to enter a civilized city, yet remain a lawful target for its players. A Blue visitor faces the same treatment in Orc territory. Standing opens gates; it does not change affiliation or erase murder notoriety.</p></section>
       <section class="panel law-explorer" aria-labelledby="law-explorer-title">
         <div class="section-heading"><h2 id="law-explorer-title">Try a border crossing</h2><span class="tag demo">Standard town preview</span></div>
         <p class="hint">Explore a normal guarded town in a jurisdiction that permits murder reports. Red-tolerant towns and occupied camps have different guard policies.</p>
         <div class="law-controls">
           <label class="field">Where are you?<select data-law="territory"><option value="civilized">Civilized territory · Blue</option><option value="orc">Orc territory · Purple</option></select></label>
-          <label class="field">Ordinary affiliation<select data-law="affiliation"><option value="purple">Orc / Titan · Purple</option><option value="blue">Non-Orc · Blue</option></select></label>
+          <label class="field">Ordinary affiliation<select data-law="affiliation"><option value="purple">Orc / Titanid · Purple</option><option value="blue">Non-Orc · Blue</option></select></label>
           <div class="law-flags"><label class="check-line"><input data-law="red" type="checkbox"> Reported murderer · Red</label><label class="check-line"><input data-law="criminal" type="checkbox"> Temporary criminal · Dark Grey</label></div>
         </div>
         <label class="slider-label" for="law-standing"><span>Local faction standing</span><output data-law="standing-value" for="law-standing">200 / 1,000</output></label>
         <input id="law-standing" data-law="standing" type="range" min="0" max="1000" step="10" value="200">
         <div class="range-labels"><span>Hostile reputation</span><span>Exceptional standing</span></div>
         <div data-law="result" class="law-results" aria-live="polite" aria-atomic="true"></div>
-        <p class="hint law-default-note"><span class="tag demo">AI default</span> This preview uses 100 standing for lawful local affiliates and 900 for Reds or opposing-affiliation visitors. The visitor threshold and the mapping of Giantkin to Blue are revisable defaults. Standing alone does not decide whether an attack is lawful.</p>
+        <p class="hint law-default-note"><span class="tag demo">AI default</span> This preview uses 100 standing for lawful local affiliates and 900 for Reds or opposing-affiliation visitors. The visitor threshold and the mapping of Mawkin to Blue are revisable defaults. Standing alone does not decide whether an attack is lawful.</p>
       </section>
       <div class="law-detail-grid">
         <section class="panel law-colors"><h2>Read the colors</h2><p class="hint">These describe separate legal states. Red and Dark Grey do not erase a character’s underlying Blue or Purple affiliation.</p>
@@ -1364,7 +1373,7 @@
         </section>
       </div>
       <section class="panel law-footnote"><h2>Ancestry, allegiance and shelter</h2><div class="law-footnote-grid">
-        <div><h3>Recognition is inherited</h3><p>At least 75% of a qualifying lineage grants homeland recognition. Giantkin never receive it, even at 75% Titan. This changes standing advantages and crime penalties; it does not automatically make anyone Purple or Red. Questing can still improve standing.</p></div>
+        <div><h3>Recognition is inherited</h3><p>At least 75% of a qualifying lineage grants homeland recognition. Mawkin never receive it, even at 75% Titanid. This changes standing advantages and crime penalties; it does not automatically make anyone Purple or Red. Questing can still improve standing.</p></div>
         <div><h3>Towns are not identical</h3><p>Major cities use overwhelming guard strength. Red-tolerant towns primarily enforce Dark Grey crimes. Small camps can lose their guards while vendors keep working. Guarded refuges provide dependable shelter; the routes between them remain dangerous.</p></div>
         <div><h3>Security has boundaries</h3><p>A lawful visitor can be welcome at one gate and vulnerable at another. Read the jurisdiction as you cross it. A reportable region is not a promise that guards can physically save you everywhere inside it.</p></div>
       </div></section>`;
@@ -1424,13 +1433,13 @@
 window.IronboundPortraits = {
   "Dommer": {
     "src": "assets/portraits/dommer.jpg",
-    "alt": "Heroic male Dommer adventurer, original fantasy concept portrait",
+    "alt": "Heroic male Taranian adventurer, original fantasy concept portrait",
     "lineage": "Dommer",
     "gender": "male"
   },
   "Hladan": {
     "src": "assets/portraits/hladan.jpg",
-    "alt": "Heroic female Hladan adventurer, original fantasy concept portrait",
+    "alt": "Heroic female Skaldan adventurer, original fantasy concept portrait",
     "lineage": "Hladan",
     "gender": "female"
   },
@@ -1466,7 +1475,7 @@ window.IronboundPortraits = {
   },
   "Sairen": {
     "src": "assets/portraits/sairen.jpg",
-    "alt": "Heroic female Sairen adventurer, original fantasy concept portrait",
+    "alt": "Heroic female Saelren adventurer, original fantasy concept portrait",
     "lineage": "Sairen",
     "gender": "female"
   },
@@ -1478,31 +1487,31 @@ window.IronboundPortraits = {
   },
   "Khazad": {
     "src": "assets/portraits/khazad.jpg",
-    "alt": "Heroic female Khazad adventurer, original fantasy concept portrait",
+    "alt": "Heroic female Khazan adventurer, original fantasy concept portrait",
     "lineage": "Khazad",
     "gender": "female"
   },
   "Friode": {
     "src": "assets/portraits/friode.jpg",
-    "alt": "Heroic male Friode adventurer, original fantasy concept portrait",
+    "alt": "Heroic male Frioden adventurer, original fantasy concept portrait",
     "lineage": "Friode",
     "gender": "male"
   },
   "Iwaman": {
     "src": "assets/portraits/iwaman.jpg",
-    "alt": "Heroic female Iwaman adventurer, original fantasy concept portrait",
+    "alt": "Heroic female Iwami adventurer, original fantasy concept portrait",
     "lineage": "Iwaman",
     "gender": "female"
   },
   "Titans": {
     "src": "assets/portraits/titans.jpg",
-    "alt": "Heroic male Titans adventurer, original fantasy concept portrait",
+    "alt": "Heroic male Titanid adventurer, original fantasy concept portrait",
     "lineage": "Titans",
     "gender": "male"
   },
   "Giantkin": {
     "src": "assets/portraits/giantkin.jpg",
-    "alt": "Heroic female Giantkin adventurer, original fantasy concept portrait",
+    "alt": "Heroic female Mawkin adventurer, original fantasy concept portrait",
     "lineage": "Giantkin",
     "gender": "female"
   }
@@ -1517,6 +1526,7 @@ window.IronboundPortraits = {
   const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
   const finite = (value, fallback) => Number.isFinite(Number(value)) ? Number(value) : fallback;
   const fmt = (value, digits = 1) => Number.isFinite(Number(value)) ? Number(value).toLocaleString('en-US', {maximumFractionDigits:digits}) : '—';
+  const shown = window.IronboundShown;
   const lineageNames = Object.keys(D.lineages).filter(key => D.lineages[key].playable !== false);
   const familyOf = key => {
     if (key === 'Giantkin') return 'Giantkin';
@@ -1537,7 +1547,7 @@ window.IronboundPortraits = {
     Friode:'Strong, durable and capable of high Intelligence, with a tighter allocation pool.',
     Iwaman:'A very short profile with high mental potential and Constitution.',
     Titans:'The strongest playable pure lineage. Height and physical power compete with a smaller allocation pool.',
-    Giantkin:'A Titan–human blend. Ancestry changes potential, but Giantkin never gain homeland recognition.'
+    Giantkin:'A Titanid–human blend. Ancestry changes potential, but Mawkin never gain homeland recognition.'
   };
   const attributeDescriptions = {
     Strength:'Melee force, weapon requirements, carrying capacity and part of stamina.',
@@ -1555,10 +1565,10 @@ window.IronboundPortraits = {
   function setNormalized(result) { state.stats = {...result.stats}; state.height = result.height; }
   function message(text) { $('change-message').textContent = text || ''; }
   function toast(text) { $('toast').textContent = text; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('toast').hidden = true; }, 4200); }
-  function currentName(p = profile) { return p.name || p.lineage || state.lineage; }
+  function currentName(p = profile) { return p.name || shown(p.lineage || state.lineage); }
   function currentAttributes() { return R.effectiveStats(state.stats, profile); }
   function currentMetrics() { return R.derive(currentAttributes(), state.height, state.body, state.targetPsyche, state.weightPercent); }
-  function optionList(keys, selected) { return keys.map(k => `<option value="${esc(k)}"${k === selected ? ' selected' : ''}>${esc(k)}</option>`).join(''); }
+  function optionList(keys, selected) { return keys.map(k => `<option value="${esc(k)}"${k === selected ? ' selected' : ''}>${esc(shown(k))}</option>`).join(''); }
   function refreshSelectors() {
     const family = familyOf(state.lineage);
     if (family === 'Orc') state.mixed = false;
@@ -1575,7 +1585,7 @@ window.IronboundPortraits = {
     $('ancestry').min = isGiant ? 31.25 : 6.25; $('ancestry').max = isGiant ? 75 : 93.75;
     state.ancestryPercent = clamp(state.ancestryPercent, Number($('ancestry').min), Number($('ancestry').max));
     $('ancestry').value = state.ancestryPercent;
-    $('ancestry-label').textContent = isGiant ? 'Titan ancestry' : `${state.lineage} ancestry`;
+    $('ancestry-label').textContent = isGiant ? 'Titanid ancestry' : `${shown.adjective(state.lineage)} ancestry`;
     $('ancestry-value').textContent = `${fmt(state.ancestryPercent, 2)}%`;
   }
   function refreshProfile(reason = '') {
@@ -1610,10 +1620,10 @@ window.IronboundPortraits = {
     });
   }
   function recognitionText() {
-    if (profile.isGiantkin) return 'Giantkin: no homeland recognition at any permitted blend, including 75% Titan.';
-    if (!profile.mixed) return `Homeland recognition: ${profile.recognition}.`;
+    if (profile.isGiantkin) return 'Mawkin: no homeland recognition at any permitted blend, including 75% Titanid.';
+    if (!profile.mixed) return `Homeland recognition: ${shown(profile.recognition)}.`;
     const recognized = profile.recognition;
-    return recognized ? `Homeland recognition: ${recognized} (at least 75%).` : 'No 75% lineage: permanent outsider status. Usually a minor issue for lawful play; more consequential for Reds.';
+    return recognized ? `Homeland recognition: ${shown(recognized)} (at least 75%).` : 'No 75% lineage: permanent outsider status. Usually a minor issue for lawful play; more consequential for Reds.';
   }
   const failedPortraits = new Set();
   $('character-portrait-image').addEventListener('error', event => {
@@ -1635,10 +1645,10 @@ window.IronboundPortraits = {
       return;
     }
     if (image.getAttribute('src') !== portrait.src) image.src = portrait.src;
-    image.alt = portrait.alt || `${lineage} character concept portrait`;
-    $('character-portrait-caption').textContent = profile.mixed && !profile.isGiantkin ? `${lineage} concept portrait` : 'Concept portrait';
+    image.alt = portrait.alt || `${shown(lineage)} character concept portrait`;
+    $('character-portrait-caption').textContent = profile.mixed && !profile.isGiantkin ? `${shown(lineage)} concept portrait` : 'Concept portrait';
     figure.title = profile.mixed && !profile.isGiantkin ?
-      `${lineage} inspiration. Concept art does not blend ancestry or change with age and body weight.` :
+      `${shown(lineage)} inspiration. Concept art does not blend ancestry or change with age and body weight.` :
       'Lineage concept art. Appearance does not change with age and body weight.';
     figure.hidden = false;
   }
@@ -1705,15 +1715,15 @@ window.IronboundPortraits = {
     const pa = R.effectiveStats(pinned.stats,pp), ca = currentAttributes();
     const pm = R.derive(pa,pinned.height,pinned.body,state.targetPsyche,pinned.weightPercent), cm = currentMetrics();
     const rows = [['Attribute pool',pp.pool,profile.pool,'',0],['Unspent points',R.account(pinned.stats,pinned.height,pp).remaining,R.account(state.stats,state.height,profile).remaining,'',0],['Height',pinned.height,state.height,' cm',0],['Body weight',pinned.weightPercent,state.weightPercent,'%',0],['Direct body HP',pp.healthBonus,profile.healthBonus,' HP',1],...D.stats.map(k => [k,pa[k],ca[k],'',0]),...D.stats.map(k => [`${k} invested`,pinned.stats[k]-10,state.stats[k]-10,'',0]),...D.stats.map(k => [`${k} maximum`,pp.effectiveCaps[k],profile.effectiveCaps[k],'',0]),['Health',pm.health,cm.health,'',1],['Stamina',pm.stamina,cm.stamina,'',1],['Mana',pm.mana,cm.mana,'',1],...metricRows.map(([key,label,unit,digits]) => [label,pm[key],cm[key],unit,digits]),['Mana regeneration',pm.manaRegen,cm.manaRegen,' / sec',2]];
-    $('comparison').innerHTML = `<div class="panel"><div class="compare-head"><div><span class="eyebrow">Side by side</span><p>Δ = current minus pinned.<br>A larger number is not always better.</p></div><div><span class="tag">Pinned</span><h3>${esc(pp.name || pinned.lineage)}</h3><p>Age ${pinned.age} · ${esc(pinned.body)} (${pinned.weightPercent}%)</p></div><div><span class="tag settled">Current</span><h3>${esc(currentName())}</h3><p>Age ${state.age} · ${esc(state.body)} (${state.weightPercent}%)</p></div></div><table class="compare-table"><caption class="comparison-caption">Attributes, potential and derived profile · target Psyche ${state.targetPsyche}</caption><thead><tr><th scope="col">Measure</th><th scope="col">Pinned</th><th scope="col">Current / difference</th></tr></thead><tbody>${rows.map(([label,a,b,unit,digits]) => {const delta=b-a;return `<tr><th scope="row">${esc(label)}</th><td>${fmt(a,digits)}${unit}</td><td>${fmt(b,digits)}${unit}<span class="delta">${Math.abs(delta)<.0001?'—':(delta>0?'+':'')+fmt(delta,digits)}</span></td></tr>`;}).join('')}</tbody></table><p class="comparison-caption">Combat-profile totals use attributes and body, without equipment or skill-effect curves. Allocation and cap differences are not a verdict on duel balance.</p></div>`;
+    $('comparison').innerHTML = `<div class="panel"><div class="compare-head"><div><span class="eyebrow">Side by side</span><p>Δ = current minus pinned.<br>A larger number is not always better.</p></div><div><span class="tag">Pinned</span><h3>${esc(pp.name || shown(pinned.lineage))}</h3><p>Age ${pinned.age} · ${esc(pinned.body)} (${pinned.weightPercent}%)</p></div><div><span class="tag settled">Current</span><h3>${esc(currentName())}</h3><p>Age ${state.age} · ${esc(state.body)} (${state.weightPercent}%)</p></div></div><table class="compare-table"><caption class="comparison-caption">Attributes, potential and derived profile · target Psyche ${state.targetPsyche}</caption><thead><tr><th scope="col">Measure</th><th scope="col">Pinned</th><th scope="col">Current / difference</th></tr></thead><tbody>${rows.map(([label,a,b,unit,digits]) => {const delta=b-a;return `<tr><th scope="row">${esc(label)}</th><td>${fmt(a,digits)}${unit}</td><td>${fmt(b,digits)}${unit}<span class="delta">${Math.abs(delta)<.0001?'—':(delta>0?'+':'')+fmt(delta,digits)}</span></td></tr>`;}).join('')}</tbody></table><p class="comparison-caption">Combat-profile totals use attributes and body, without equipment or skill-effect curves. Allocation and cap differences are not a verdict on duel balance.</p></div>`;
   }
   function renderFormulas() {
     const definitions = Array.isArray(D.metricDefinitions) ? D.metricDefinitions : Object.entries(D.metricDefinitions || {}).map(([key,def]) => ({key,...def}));
     const extras = [
-      {label:'Allocation & height',status:'established',formula:'raw score = 10 + invested points\nspent = Σ(invested points) + (height_cm − 150) / 2\nremaining = lineage pool − spent',note:'The 400-point reference pool and lineage cap tables are existing tuning defaults. Dommer receive 432. Below-150 height uses signed accounting. Weight does not alter the pool or refund investment.'},
+      {label:'Allocation & height',status:'established',formula:'raw score = 10 + invested points\nspent = Σ(invested points) + (height_cm − 150) / 2\nremaining = lineage pool − spent',note:'The 400-point reference pool and lineage cap tables are existing tuning defaults. Taranians receive 432. Below-150 height uses signed accounting. Weight does not alter the pool or refund investment.'},
       {label:'Age sets potential; weight changes the result',status:'established',formula:'raw cap = round_half_up(baseline cap + age offset)\neffective score = max(10, 10 + invested points + weight modifier)\neffective maximum = max(10, raw cap + weight modifier)',note:'A −20 modifier uses the first 20 invested points to overcome its penalty. Point 21 raises the effective score to 11. Age changes the allocation ceiling, not the 10-point starting floor. Age offsets remain tuning defaults.'},
       {label:'Weight and health',status:'preview',formula:'class anchor = nearest 10% on the 0–100% scale\ndirect HP adjustment = −15 + 0.5 × class anchor',note:'Health and attribute modifiers change together in class steps. Overall HP also includes Constitution. Emaciated receives −15 direct HP; Fit +10; Obese +35. The upper endpoint, intermediate HP amounts and class boundaries are tuning defaults. This percentage is not body-fat percentage.'},
-      {label:'Ancestry blending',status:'preview',formula:'blended cap = weighted parental baseline caps\nblended pool = round_half_up(400 × weighted multiplier)',note:'Two-source blending illustrates the decided 6.25% selection steps. Interpolation is not finalized. Giantkin permit 31.25–75% Titan and never gain homeland recognition.'},
+      {label:'Ancestry blending',status:'preview',formula:'blended cap = weighted parental baseline caps\nblended pool = round_half_up(400 × weighted multiplier)',note:'Two-source blending illustrates the decided 6.25% selection steps. Interpolation is not finalized. Mawkin permit 31.25–75% Titanid and never gain homeland recognition.'},
       {label:'Attribute bonuses to skills',status:'proposed',formula:'one attribute: floor(A / 10)\ntwo attributes: floor((A + B) / 20)',note:'This mapping is proposed. Effective skills stop at 100; a secondary has no primary point charge. Attribute bonuses do not teach unknown skills.'}
     ];
     $('formula-list').innerHTML = [...extras,...definitions].map(def => {const raw=String(def.status || 'preview');const preview=/preview|illustrative|proposed|planner|mixed/.test(raw.toLowerCase());const established=/^decided$|^established$/.test(raw);const badge=preview?'Preview':established?'Established':'Tuning default';return `<article class="formula-item"><h3>${esc(def.label || def.key)} <span class="tag ${preview?'demo':established?'settled':''}">${badge}</span></h3><code>${esc(def.formula || '')}</code><p>${esc(def.note || def.description || '')}</p></article>`;}).join('');
